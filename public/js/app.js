@@ -11,9 +11,9 @@ ang.service("Service", function ($http) {
     this.addPost = function (data) { 
         return $http.post("http://localhost:8080/posts/",data)
     }
-//     this.deleteData = function (id) { 
-//        return $http.delete("http://localhost:8080/posts/"+id)
-//    }
+     this.deleteData = function (id) { 
+        return $http.delete("http://localhost:8080/posts/"+id)
+    }
      
       this.likeDisLike = function (id,data) { 
         return $http.put("http://localhost:8080/posts/"+id+'/',data);
@@ -34,15 +34,15 @@ ang.controller("ctrl", function ($scope, Service) {
         })
     }
     
-//    $scope.remove = function(id){
-//        Service.deleteData(id).then(function(response){
-//            $scope.message = response.data;
-//            $scope.get();
-//            
-//            
-//        });
-//        
-//    }
+    $scope.remove = function(id){
+        Service.deleteData(id).then(function(response){
+
+            $scope.get();
+            
+            
+        });
+        
+    }
     
     
     $scope.addPost = function(){
@@ -85,6 +85,19 @@ ang.controller("ctrl", function ($scope, Service) {
         })
         
     }
+     
+     $('#postTextArea').keypress(function (event) {
+            if (event.which == 13) {
+                $('#postTextArea').val('');
+                $scope.addPost();
+            }
+        });
+     
+     
+     
+     
+     
+     
     
 //    $scope.update = function(id){
 //        var data = {name: $scope.name, age:$scope.age};
@@ -105,3 +118,5 @@ ang.controller("ctrl", function ($scope, Service) {
 
 
 });
+
+

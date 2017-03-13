@@ -1,0 +1,69 @@
+#postTextArea{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    
+    
+}
+
+#postBtn{
+    width:20%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #0099cc;
+	color: #0099cc;
+    background: none;
+    
+}
+#postBtn.hover{
+
+    border: 2px solid #0099cc;
+	color: antiquewhite;
+    background: #0099cc;
+    
+}
+
+.textAreaAndButton{
+    margin-bottom: 20px;
+    
+}
+.post{
+        width: 70%;
+    border: 0.5px solid rgba(148, 145, 145, 0.28);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    
+}
+.post p{
+font-size:20px;
+    font-family: sans-serif;
+    
+    
+}
+.like-dislike{
+    font-size:15px;
+    
+}
+#like:hover{
+    color: royalblue;
+    cursor: pointer;
+    
+}
+#dislike:hover{
+    color: red;
+    cursor: pointer;
+}
+#remove{
+        float: right;
+    color: #cecece;
+
+}
+
+#remove:hover{
+    cursor: pointer;
+    color: red;
+
+}

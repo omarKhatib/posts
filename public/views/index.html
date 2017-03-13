@@ -10,28 +10,40 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel='stylesheet' href='s.css'>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel='stylesheet' href='../css/style.css'>
     <!-- Latest compiled and minified JavaScript -->
 
 </head>
 
 <body ng-app="app" ng-controller="ctrl" ng-init='get()'>
-<input ng-model='post' type='text' placeholder='post'>
-    <button ng-click='addPost()'>post</button>
-    <hr><hr>
-    <div ng-repeat = 'post in posts.data'>
-    <p>
-       {{post.post}}
-        <span ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>.
-        <span ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
-        </p>
+<div class='textAreaAndButton'>
+   <textarea id="postTextArea" ng-model='post' class="form-control" rows="5"  placeholder='post'></textarea>
+   <center>
+    <div id='postBtn' ng-click='addPost()' class='btn btn-primary'>post</div>
+        
+    </center>
+    </div>
+    
+    <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
+    <div class="card w-75 post" >
+        <span id='remove' class='glyphicon glyphicon-remove' ng-click='remove(post._id)'></span>
+  <div class="card-block">
+    <p class="card-text">{{post.post}}</p>
+    <span id='like' class="glyphicon glyphicon-thumbs-up like-dislike" ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>
+    <span id='dislike' class="glyphicon glyphicon-thumbs-down like-dislike" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
+  </div>
+</div>
     </div>
 
 
 
 
 
-    <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>
+
+    
+    <script src="../js/angular.min.js"></script>
+    <script src='../js/jquery-3.1.1.min.js'></script>>
     <script src="../js/app.js"></script>
 
 </body>
