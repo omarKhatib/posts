@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>posts Rating</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel='stylesheet' href='s.css'>
+    <!-- Latest compiled and minified JavaScript -->
+
+</head>
+
+<body ng-app="app" ng-controller="ctrl" ng-init='get()'>
+<input ng-model='post' type='text' placeholder='post'>
+    <button ng-click='addPost()'>post</button>
+    <hr><hr>
+    <div ng-repeat = 'post in posts.data'>
+    <p>
+       {{post.post}}
+        <span ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>.
+        <span ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
+        </p>
+    </div>
+
+
+
+
+
+    <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>
+    <script src="../js/app.js"></script>
+
+</body>
+
+</html>
