@@ -70,6 +70,18 @@
     cursor: pointer;
 }
 
+.postOptions{
+    float:right;
+    font-size: 130%;
+     color: #7b7b7b;
+}
+
+.postOptions:hover{
+    cursor: pointer;
+    
+}
+
+/*
 #remove {
     float: right;
     color: #cecece;
@@ -78,4 +90,4 @@
 #remove:hover {
     cursor: pointer;
     color: red;
-}
+}*/
