@@ -23,7 +23,7 @@
 <div class='textAreaAndButton'>
    <textarea id="postTextArea" ng-model='post' class="form-control" rows="5"  placeholder='write any thing......'></textarea>
    <center>
-    <button  ng-click='addPost()' class='btn btn-primary postBtn'>post</button>
+    <button id='addbtn'  ng-click='addPost()' class='btn btn-primary postBtn'>post</button>
         
     </center>
     </div>
@@ -37,12 +37,33 @@
      
   </span>
        <ul class="dropdown-menu">
-           <li><a>edit</a></li>
+           <li data-toggle="modal" data-target="#myModal"><a>edit</a></li>
            <li ng-click='remove(post._id)'> <a>remove</a></li>
   </ul>
  
 </div>
-        
+        <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">edit post</h4>
+        </div>
+        <div class="modal-body">
+          <textarea>
+          {{post.post}}
+            </textarea>
+        </div>
+        <div class="modal-footer">
+         <button ng-model='editedPost' ng-click='edit(post._id,post.likes,post.disLikes)' type="button" class="btn btn-default" data-dismiss="modal">edit</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+        </div>
         
   <div class="card-block">
     <p class="card-text">{{post.post}}</p>

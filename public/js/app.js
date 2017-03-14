@@ -18,6 +18,11 @@ ang.service("Service", function ($http) {
       this.likeDisLike = function (id,data) { 
         return $http.put("http://localhost:8000/posts/"+id+'/',data);
     }
+      
+      this.updatePost = function(id,data){
+          return $http.put("http://localhost:8000/posts/"+id+'/',data);
+          
+      }
 
 
 
@@ -60,6 +65,22 @@ ang.controller("ctrl", function ($scope, Service) {
         
     }
     
+  
+    
+    
+
+    $scope.edit = function(id,likes,dislikes){
+        var data = {post: $scope.post, likes:likes, disLikes:dislikes};
+         Service.updatePost(id,data).then(function(response){
+            //$scope.message = response.data;
+            $scope.get();
+            
+            
+        });
+        
+    }
+   
+    
     
     
 
@@ -92,7 +113,8 @@ ang.controller("ctrl", function ($scope, Service) {
                 $scope.addPost();
             }
         });
-     
+    
+
      
      
      
