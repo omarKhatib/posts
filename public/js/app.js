@@ -2,21 +2,21 @@ var ang = angular.module("app", []);
 ang.service("Service", function ($http) {
  
     this.getPosts = function () { 
-        return $http.get("http://localhost:8080/posts")
+        return $http.get("http://localhost:8000/posts")
     }
  
     
     
     
     this.addPost = function (data) { 
-        return $http.post("http://localhost:8080/posts/",data)
+        return $http.post("http://localhost:8000/posts/",data)
     }
      this.deleteData = function (id) { 
-        return $http.delete("http://localhost:8080/posts/"+id)
+        return $http.delete("http://localhost:8000/posts/"+id)
     }
      
       this.likeDisLike = function (id,data) { 
-        return $http.put("http://localhost:8080/posts/"+id+'/',data);
+        return $http.put("http://localhost:8000/posts/"+id+'/',data);
     }
 
 
