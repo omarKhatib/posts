@@ -1,69 +1,81 @@
-#postTextArea{
-    width:50%;
+.container {
+    padding: 20px;
+}
+
+#postTextArea {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
-    
-    
+    border-radius: 10px;
+    border: solid 3px #0099cc;
+    resize: none;
+    width: 45%;
 }
 
-#postBtn{
-    width:20%;
+.postBtn {
     margin-left: auto;
     margin-right: auto;
     border: 2px solid #0099cc;
-	color: #0099cc;
+    color: #0099cc;
     background: none;
-    
+    border-radius: 38px;
 }
-#postBtn.hover{
 
+.postBtn:hover {
     border: 2px solid #0099cc;
-	color: antiquewhite;
+    color: antiquewhite;
     background: #0099cc;
-    
 }
 
-.textAreaAndButton{
+.textAreaAndButton {
     margin-bottom: 20px;
-    
 }
-.post{
-        width: 70%;
+
+.post {
+    width: 70%;
     border: 0.5px solid rgba(148, 145, 145, 0.28);
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
     text-align: center;
-    
+        background-color: rgba(255, 255, 240, 0.52);
+    border-radius: 18px;
+    word-wrap: break-word;
+    padding: 5px;
 }
-.post p{
-font-size:20px;
+
+.post:hover {
+    border: solid 1px #0099cc;
+}
+
+.post p {
+    font-size: 20px;
     font-family: sans-serif;
-    
-    
+    color: #7b7b7b;
 }
-.like-dislike{
-    font-size:15px;
-    
+
+.like-dislike {
+    font-size: 130%;
+    margin-right:2%;
+    color: #7b7b7b;
 }
-#like:hover{
+
+#like:hover {
     color: royalblue;
     cursor: pointer;
-    
 }
-#dislike:hover{
+
+#dislike:hover {
     color: red;
     cursor: pointer;
 }
-#remove{
-        float: right;
+
+#remove {
+    float: right;
     color: #cecece;
-
 }
 
-#remove:hover{
+#remove:hover {
     cursor: pointer;
     color: red;
-
 }

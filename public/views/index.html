@@ -17,10 +17,12 @@
 </head>
 
 <body ng-app="app" ng-controller="ctrl" ng-init='get()'>
+    <div class='container'>
+        <div class='jumbotron'>
 <div class='textAreaAndButton'>
-   <textarea id="postTextArea" ng-model='post' class="form-control" rows="5"  placeholder='post'></textarea>
+   <textarea id="postTextArea" ng-model='post' class="form-control" rows="5"  placeholder='write any thing......'></textarea>
    <center>
-    <div id='postBtn' ng-click='addPost()' class='btn btn-primary'>post</div>
+    <button  ng-click='addPost()' class='btn btn-primary postBtn'>post</button>
         
     </center>
     </div>
@@ -38,8 +40,8 @@
 
 
 
-
-
+        </div>
+    </div>
 
     
     <script src="../js/angular.min.js"></script>
