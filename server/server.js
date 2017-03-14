@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/posts');    // localhost/dbName
 var path = require("path");
 var apiRouter=require("./api.js");
 var fileRouter = require('./files.js');
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8000;
 
 
 
