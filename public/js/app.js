@@ -69,8 +69,8 @@ ang.controller("ctrl", function ($scope, Service) {
     
     
 
-    $scope.edit = function(id,likes,dislikes){
-        var data = {post: $scope.post, likes:likes, disLikes:dislikes};
+    $scope.edit = function(id,post,likes,dislikes){
+        var data = {post: post, likes:likes, disLikes:dislikes};
          Service.updatePost(id,data).then(function(response){
             //$scope.message = response.data;
             $scope.get();
