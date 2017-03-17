@@ -37,35 +37,15 @@
      
   </span>
        <ul class="dropdown-menu">
-           <li data-toggle="modal" data-target="#myModal"><a>edit</a></li>
+           <li ng-click='isEditible=true'><a>edit</a></li>
            <li ng-click='remove(post._id)'> <a>remove</a></li>
   </ul>
  
 </div>
-        <div class="modal" id="myModal" role="dialog">
-    <div class="modal-dialog">
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">edit post</h4>
-        </div>
-        <div class="modal-body">
-          <textarea rows = '5' ng-init="editedPost = post.post" ng-model='editedPost' class='form-control editedPostTextArea'>
-            </textarea>
-        </div>
-        <div class="modal-footer">
-         <button ng-model='editedPost' ng-click='edit(post._id,editedPost,post.likes,post.disLikes)' type="button" class="btn btn-default" data-dismiss="modal">edit</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-        </div>
         
-  <div class="card-block">
-    <p class="card-text">{{post.post}}</p>
+  <div class="card-block" ng-init='isEditible=false'>
+      <p contentEditable={{isEditible}} class="card-text" ><span id='editedPost'>{{post.post}}</span><button ng-if='isEditible' ng-click='edit(post._id,post.likes,post.disLikes)'>edit</button></p>
     <span id='like' class="glyphicon glyphicon-thumbs-up like-dislike" ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>
     <span id='dislike' class="glyphicon glyphicon-thumbs-down like-dislike" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
   </div>

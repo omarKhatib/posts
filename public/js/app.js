@@ -50,6 +50,9 @@ ang.controller("ctrl", function ($scope, Service) {
     }
     
     
+
+    
+    
     $scope.addPost = function(){
         var data = {post: $scope.post, likes:0, disLikes:0};
         Service.addPost(data).then(function(response){
@@ -69,8 +72,10 @@ ang.controller("ctrl", function ($scope, Service) {
     
     
 
-    $scope.edit = function(id,post,likes,dislikes){
-        var data = {post: post, likes:likes, disLikes:dislikes};
+    $scope.edit = function(id,likes,dislikes){
+        var p = $('#editedPost').text();
+        var data = {post:p, likes:likes, disLikes:dislikes};
+        console.log(data);
          Service.updatePost(id,data).then(function(response){
             //$scope.message = response.data;
             $scope.get();
@@ -140,5 +145,3 @@ ang.controller("ctrl", function ($scope, Service) {
 
 
 });
-
-
