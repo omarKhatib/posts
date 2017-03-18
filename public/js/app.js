@@ -72,10 +72,10 @@ ang.controller("ctrl", function ($scope, Service) {
     
     
 
-    $scope.edit = function(id,likes,dislikes){
-        var p = $('#editedPost').text();
-        var data = {post:p, likes:likes, disLikes:dislikes};
-        console.log(data);
+    $scope.edit = function(id,i,likes,dislikes){
+     var post = $("#"+i).text();
+        
+        var data = {post:post ,likes:likes, disLikes:dislikes};
          Service.updatePost(id,data).then(function(response){
             //$scope.message = response.data;
             $scope.get();

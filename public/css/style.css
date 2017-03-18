@@ -59,7 +59,7 @@
     color: #7b7b7b;
 }
 
-.like-dislike {
+.postIcons {
     font-size: 130%;
     margin-right:2%;
     color: #7b7b7b;
@@ -75,18 +75,21 @@
     cursor: pointer;
 }
 
-.postOptions{
-    float:right;
-    font-size: 130%;
-     color: #7b7b7b;
-}
-
-.postOptions:hover{
+#edit:hover {
+    color: green;
     cursor: pointer;
     
 }
 
-/*
+#applyEdits:hover {
+    color: green;
+    cursor: pointer;
+    
+}
+
+
+
+
 #remove {
     float: right;
     color: #cecece;
@@ -95,4 +98,4 @@
 #remove:hover {
     cursor: pointer;
     color: red;
-}*/
+}
