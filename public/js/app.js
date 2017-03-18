@@ -57,6 +57,7 @@ ang.controller("ctrl", function ($scope, Service) {
         var data = {post: $scope.post, likes:0, disLikes:0};
         Service.addPost(data).then(function(response){
             //$scope.message = response.data;
+            $scope.post='';
             $scope.get();
             
             

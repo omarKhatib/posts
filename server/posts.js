@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var postsSchema = new schema({
-    post: String,
+    post: {
+        type:String,
+        required:true
+    },
     likes:Number,
     disLikes:Number
     
