@@ -6,7 +6,8 @@ var postsSchema = new schema({
         required:true
     },
     likes:Number,
-    disLikes:Number
+    disLikes:Number,
+    comments:[String]
     
     
     

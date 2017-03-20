@@ -68,6 +68,26 @@ apiRouter.post("/",function(req, res){
     
 });
 
+apiRouter.post("/:id",function(req, res){      //to add comment
+    var comment = req.body.comment;
+    data.findOne({_id:req.params.id}, function(err , d){
+        if(err){
+            res.status(500).send({message:'error'});
+            
+        }
+        else{
+            d.comments.push(comment);
+            d.save(function(err, data));
+            
+            
+        }
+        
+        
+    })
+
+    
+});
+
 apiRouter.delete("/:id", function(req, res){
    // console.log(req.params.id);
     data.findOne({_id:req.params.id}, function(err, data){

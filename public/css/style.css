@@ -81,6 +81,11 @@
     
 }
 
+#comment{
+    cursor: pointer;
+    
+}
+
 #applyEdits:hover {
     color: green;
     cursor: pointer;

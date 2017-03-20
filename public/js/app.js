@@ -2,12 +2,12 @@ var ang = angular.module("app", []);
 ang.service("Service", function ($http) {
  
     this.getPosts = function () { 
-        return $http.get("http://localhost:8000/posts")
+        return $http.get("http://localhost:8000/posts");
+    }
+    this.getComments = function(id){
+        return $http.get("http://localhost:8000/posts/"+id);
     }
  
-    
-    
-    
     this.addPost = function (data) { 
         return $http.post("http://localhost:8000/posts/",data)
     }
@@ -23,6 +23,12 @@ ang.service("Service", function ($http) {
           return $http.put("http://localhost:8000/posts/"+id+'/',data);
           
       }
+      
+      this.addComment = function(id, data){
+          
+          return $http.post("http://localhost:8000/posts/"+id+'/',data);
+          
+      }
 
 
 
@@ -31,6 +37,7 @@ ang.service("Service", function ($http) {
 
 ang.controller("ctrl", function ($scope, Service) {
     $scope.get = function(){
+        console.log('getting data');
         Service.getPosts().then(function(response){
             $scope.posts = response.data;
             
@@ -112,6 +119,33 @@ ang.controller("ctrl", function ($scope, Service) {
         })
         
     }
+     
+     
+     $scope.getComments = function(id){
+         Service.getComments(id).then(function(response){
+             $scope.comments=response.data.data.comments;
+             console.log($scope.comments);
+         })
+         
+         
+         
+     }
+     
+     
+     $scope.addComment= function(id, comment){
+         var data = {comment:comment};
+         
+         Service.addComment(id,data).then($scope.getComments(id), function(err){
+             console.log('error'+err);
+             
+         });
+         
+         
+         
+     }
+     
+     
+     
      
      $('#postTextArea').keypress(function (event) {
             if (event.which == 13) {
