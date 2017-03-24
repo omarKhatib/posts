@@ -122,9 +122,10 @@ ang.controller("ctrl", function ($scope, Service) {
      
      
      $scope.getComments = function(id){
+         
          Service.getComments(id).then(function(response){
              $scope.comments=response.data.data.comments;
-             console.log($scope.comments);
+             
          })
          
          
@@ -134,6 +135,7 @@ ang.controller("ctrl", function ($scope, Service) {
      
      $scope.addComment= function(id, comment){
          var data = {comment:comment};
+         $scope.comment = '';
          
          Service.addComment(id,data).then($scope.getComments(id), function(err){
              console.log('error'+err);

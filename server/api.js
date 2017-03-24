@@ -77,7 +77,7 @@ apiRouter.post("/:id",function(req, res){      //to add comment
         }
         else{
             d.comments.push(comment);
-            d.save(function(err, data));
+            d.save();
             
             
         }
