@@ -24,12 +24,14 @@
     color: #0099cc;
     background: none;
     border-radius: 38px;
+    transition: border-radius 0.3s;
 }
 
 .postBtn:hover {
     border: 2px solid #0099cc;
-    color: antiquewhite;
-    background: #0099cc;
+    color: #0099cc;
+    background: none !important;
+    border-radius: 9px;
 }
 
 .textAreaAndButton {
@@ -83,6 +85,32 @@
 
 #comment{
     cursor: pointer;
+    
+}
+
+
+#commentTextField{
+    display: inline-block;
+    width:75%;
+    
+}
+
+.commentbtn{
+    border: 2px solid;
+    color: #7b7b7b;
+    background: none;
+    border-radius: 10px;
+    transition: border-radius 0.3s;
+    
+    
+    
+}
+
+.commentbtn:hover{
+    border: 2px solid ;
+    color: #7b7b7b;
+    background: none !important;
+    border-radius: 9px;
     
 }
 
