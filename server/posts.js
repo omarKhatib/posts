@@ -5,8 +5,10 @@ var postsSchema = new schema({
         type:String,
         required:true
     },
+    image: String,
     likes:Number,
     disLikes:Number,
+    
     comments:[String]
     
     

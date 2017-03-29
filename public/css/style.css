@@ -2,12 +2,12 @@
     padding: 20px;
 }
 
-#postTextArea {
+.postTextArea {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
     border-radius: 10px;
-    border: solid 3px #0099cc;
+    border: solid 1.7px #0099cc;
     resize: none;
     width: 45%;
 }
@@ -60,7 +60,12 @@
     font-family: sans-serif;
     color: #7b7b7b;
 }
-
+#postImg{
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    
+}
 .postIcons {
     font-size: 130%;
     margin-right:2%;

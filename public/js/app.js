@@ -40,6 +40,7 @@ ang.controller("ctrl", function ($scope, Service) {
         console.log('getting data');
         Service.getPosts().then(function(response){
             $scope.posts = response.data;
+            console.log($scope.posts);
             
             
             
@@ -61,10 +62,11 @@ ang.controller("ctrl", function ($scope, Service) {
     
     
     $scope.addPost = function(){
-        var data = {post: $scope.post, likes:0, disLikes:0};
+        var data = {post: $scope.post, image:$scope.image, likes:0, disLikes:0};
         Service.addPost(data).then(function(response){
             //$scope.message = response.data;
             $scope.post='';
+            $scope.image = '';
             $scope.get();
             
             
