@@ -2,6 +2,10 @@
     padding: 20px;
 }
 
+.jumbotron{
+    
+    background-color: rgba(91, 192, 222, 0.05);
+}
 .postTextArea {
     margin-left: auto;
     margin-right: auto;
@@ -39,14 +43,14 @@
 }
 
 .post {
-    width: 70%;
+    width: 55%;
     border: 0.5px solid rgba(148, 145, 145, 0.28);
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-bottom: 1.5px;
     text-align: center;
         background-color: rgba(255, 255, 240, 0.52);
-    border-radius: 18px;
+    
     word-wrap: break-word;
     padding: 5px;
 }
