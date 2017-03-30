@@ -36,6 +36,7 @@ ang.service("Service", function ($http) {
 });
 
 ang.controller("ctrl", function ($scope, Service) {
+    var tags = [];
     $scope.get = function(){
         console.log('getting data');
         Service.getPosts().then(function(response){
@@ -62,7 +63,18 @@ ang.controller("ctrl", function ($scope, Service) {
     
     
     $scope.addPost = function(){
-        var data = {post: $scope.post, image:$scope.image, likes:0, disLikes:0};
+        var postArr = $scope.post.split(" ");
+        //var tags = [];
+        for(var i=0 ; i<postArr.length ; i++){
+            if(postArr[i][0] == "#"){
+                tags.push(postArr[i]);
+            }
+            
+        }
+        
+        
+        
+        var data = {post: $scope.post, image:$scope.image, likes:0, disLikes:0, tags};
         Service.addPost(data).then(function(response){
             //$scope.message = response.data;
             $scope.post='';

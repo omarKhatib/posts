@@ -8,7 +8,7 @@ var postsSchema = new schema({
     image: String,
     likes:Number,
     disLikes:Number,
-    
+    tags:[String],
     comments:[String]
     
     
