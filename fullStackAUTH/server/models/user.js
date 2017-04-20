@@ -11,6 +11,10 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
+    profileImage: {
+    type: String,
+    required: true
+  },
   privilage: {
     type: String,
     default: "user",

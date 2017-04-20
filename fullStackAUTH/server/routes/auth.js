@@ -7,6 +7,63 @@ var authRouter = express.Router();
 var User = require("../models/user.js");
 
 //signup
+
+
+
+
+authRouter.get("/", function(req, res){   //just for testing
+    
+        User.find({}, function (err, data) {
+        if (err) {
+            res.status(500).send({
+                message: 'internal server error'
+            });
+
+        } else {
+
+            res.status(200).send({
+                data: data
+            });
+
+        }
+
+
+
+
+
+    })
+    
+    
+});
+
+authRouter.get("/:username", function (req, res) {
+    User.findOne({
+        username: req.params.username
+    }, function (err, data) {
+        if (err) {
+            res.status(500).send({
+                message: 'internal server error'
+            });
+
+        } else {
+
+            res.status(200).send({
+                data: data
+            });
+
+        }
+
+
+
+
+
+    })
+
+});
+
+
+
+
 authRouter.post("/signup", function(req, res) {
   //If the username is already taken
   //If not then add the user

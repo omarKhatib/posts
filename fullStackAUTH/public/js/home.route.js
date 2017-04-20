@@ -1,4 +1,4 @@
-var app = angular.module("app.home", ["ngRoute", "requestsModule", "privModule", "tokenModule"]);
+var app = angular.module("app.home", ["ngRoute", "requestsModule", "privModule", "tokenModule", "authModule"]);
 
 app.config(function($routeProvider) {
   $routeProvider.when("/home", {
@@ -7,7 +7,7 @@ app.config(function($routeProvider) {
   });
 });
 
-app.controller("homeCtrl", function($scope, Service, privService, tokenService, $location) {
+app.controller("homeCtrl", function($scope, Service, privService, tokenService,authService, $location) {
   $scope.todoItems = [];
   $scope.userinput = {};
         var tags = [];
@@ -38,7 +38,11 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService, 
         
         
         
-        var data = {post: $scope.post, image:$scope.image, likes:0, disLikes:0, tags};
+        
+      
+        
+        
+        var data = {post: $scope.post, image:$scope.image, likes:0, disLikes:0, tags, username};
         Service.addPost(data).then(function(response){
             //$scope.message = response.data;
             $scope.post='';
@@ -54,6 +58,25 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService, 
         
     }
     
+    var username = privService.getUser(); //get username for each post
+    
+      $scope.getProfileImage  =function(){
+            alert('getting user data');
+            authService.getProfileImage(username).then(function(response){
+                console.log(response.data.data);
+                $scope.i = response.data.data.profileImage;
+                
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+            
+            
+            
+            
+        }
 
 
     $scope.edit = function(id,i,likes,dislikes){

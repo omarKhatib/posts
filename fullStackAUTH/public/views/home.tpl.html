@@ -27,7 +27,7 @@
   </div>
 </div>
 -->
-    <div class='container' ng-init='get()'>
+    <div class='container' ng-init='get();getProfileImage()'>
         <button ng-click='signout()' >signout</button>
         <div class='jumbotron'>
 <div class='textAreaAndButton'>
@@ -48,6 +48,12 @@
     
         
   <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
+    <div class='row'>
+     <img style='width:10% ; height:10%' ng-src='{{i}}'>
+      <span style='float:left ; font-weight: bold;'>{{post.username}}</span>
+      </div>
+      
+      <div class='row'>
       <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       
       <img id='postImg' ng-src='{{post.image}}' />
@@ -63,6 +69,7 @@
             <button ng-click='addComment(post._id, comment)' class='commentbtn'>add</button>
             <p ng-repeat='c in comments track by $index'><span>{{c}}</span></p>
             
+        </div>
         </div>
 </div>
     </div>
