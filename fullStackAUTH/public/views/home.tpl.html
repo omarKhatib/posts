@@ -1,0 +1,73 @@
+<!--
+<div ng-init="loadData()">
+  <div ng-repeat="item in todoItems track by $index">
+    <div name="Show when its not being edited" ng-if="!item.isEdit">
+      <h4>{{item.title}}</h4>
+      <p>{{item.description}}</p>
+      <p>Cost {{item.cost | currency}}</p>
+      <p>{{item.isDone}}</p>
+      <p ng-if="priv == 'admin'">Account: {{item.username}}</p>
+      <button ng-click="toggleEdit(item)">Edit</button>
+      <button ng-click="delete(item._id)" ng-if="priv == 'admin'">Delete</button>
+    </div>
+    <div name="Show when it is being edited" ng-if="item.isEdit">
+      <input placeholder="Title" ng-model="item.title" type="text">
+      <input placeholder="Description" ng-model="item.description" type="text">
+      <input placeholder="Cost" ng-model="item.cost" type="number">
+      <input placeholder="Is Done" ng-model="item.isDone" type="boolean">
+      <button ng-click="saveData(item._id, item)">Save</button>
+    </div>
+
+  </div>
+  <div>
+    <input placeholder="Title" ng-model="userinput.title" type="text">
+    <input placeholder="Description" ng-model="userinput.description" type="text">
+    <input placeholder="Cost" ng-model="userinput.cost" type="number">
+    <button ng-click="addData()">Add</button>
+  </div>
+</div>
+-->
+    <div class='container' ng-init='get()'>
+        <button ng-click='signout()' >signout</button>
+        <div class='jumbotron'>
+<div class='textAreaAndButton'>
+   <textarea  ng-model='post' class="form-control postTextArea" rows="5"  placeholder='write any thing......'></textarea>
+   
+   <input type='url' placeholder='image URL' ng-model='image' class="form-control postTextArea">
+   <center>
+    <button id='addbtn'  ng-click='addPost()' class='btn btn-primary postBtn'>post</button>
+        
+    </center>
+    </div>
+    
+    <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
+    <div class="card w-75 post" >
+        <span id='remove' class='glyphicon glyphicon-remove' ng-click='remove(post._id)'></span>
+        
+
+    
+        
+  <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
+      <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
+      
+      <img id='postImg' ng-src='{{post.image}}' />
+    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>
+    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
+      <span id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
+      <span id='comment' class='glyphicon glyphicon-comment postIcons' ng-click='showComments=!showComments;getComments(post._id)'></span>
+      <span id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
+  </div>
+        <div ng-show='showComments' class='commentsBlock'>
+        <hr>
+        <input id='commentTextField' ng-model='comment'  placeholder='comment' type='text' class='form-control'>
+            <button ng-click='addComment(post._id, comment)' class='commentbtn'>add</button>
+            <p ng-repeat='c in comments track by $index'><span>{{c}}</span></p>
+            
+        </div>
+</div>
+    </div>
+
+
+
+        </div>
+    </div>
