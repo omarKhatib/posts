@@ -33,7 +33,7 @@ apiRouter.use(userRouter);
 
 apiRouter.get("/", function (req, res) {  
     
-    data.find({username : req.body.username}, function (err, data) { //get user's posts
+    data.find({username: req.body.username}, function (err, data) { //get user's posts
         if (err) {
             res.status(500).send({
                 message: 'internal server error'
