@@ -41,7 +41,7 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
         
       
         
-        
+        var username = $scope.username;
         var data = {post: $scope.post, image:$scope.image, likes:0, disLikes:0, tags, username};
         Service.addPost(data).then(function(response){
             //$scope.message = response.data;
@@ -58,11 +58,11 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
         
     }
     
-    var username = privService.getUser(); //get username for each post
+    $scope.username = privService.getUser(); //get username for each post
     
       $scope.getProfileImage  =function(){
             alert('getting user data');
-            authService.getProfileImage(username).then(function(response){
+            authService.getProfileImage($scope.username).then(function(response){
                 console.log(response.data.data);
                 $scope.i = response.data.data.profileImage;
                 

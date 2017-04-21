@@ -31,7 +31,7 @@ apiRouter.use(userRouter);
 //});
 
 
-apiRouter.get("/", function (req, res) {   /
+apiRouter.get("/", function (req, res) {  
     
     data.find({username : req.body.username}, function (err, data) { //get user's posts
         if (err) {
