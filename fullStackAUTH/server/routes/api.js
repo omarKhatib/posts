@@ -31,9 +31,9 @@ apiRouter.use(userRouter);
 //});
 
 
-apiRouter.get("/", function (req, res) {
+apiRouter.get("/", function (req, res) {   /
     
-    data.find({}, function (err, data) {
+    data.find({username : req.body.username}, function (err, data) { //get user's posts
         if (err) {
             res.status(500).send({
                 message: 'internal server error'
@@ -173,7 +173,7 @@ apiRouter.put("/:id", function (req, res) {
 
 });
 
-apiRouter.use(adminPriv);
+//apiRouter.use(adminPriv);
 
 apiRouter.delete("/:id", function (req, res) {
     // console.log(req.params.id);
