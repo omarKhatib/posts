@@ -3,8 +3,11 @@ var app = angular.module("authModule", []);
 app.service("authService", function($http) {
     this.getProfileImage = function(username){
         return $http.get("http://localhost:8070/auth/"+username);
-        
-        
+         
+    }
+    
+    this.getUsers = function(){
+        return $http.get("http://localhost:8070/auth/");
     }
     
   this.postSignup = function(data) {
