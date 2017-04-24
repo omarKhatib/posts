@@ -13,9 +13,19 @@ var adminPriv = require("../middleware/adminPriv.js");
 
 
 
+
+
 chattingRouter.get("/:sender/:reciever", function(req, res) {  
  console.log(req.params);
-    data.find({"sender": req.params.sender, "reciever":req.params.reciever}, function (err, data) { //get user's posts
+    data.find({
+        $or: [
+          {"sender": req.params.sender, "reciever": req.params.reciever },
+          {"sender": req.params.reciever, "reciever": req.params.sender}
+      ]
+        
+        
+        
+    }, function (err, data) { //get user's posts
         if (err) {
             res.status(500).send({
                 message: 'internal server error'
