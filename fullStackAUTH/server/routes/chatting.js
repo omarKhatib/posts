@@ -8,14 +8,14 @@ var data = require("../models/chatting.js");
 var userRouter = require("../middleware/userMiddle.js");
 var adminPriv = require("../middleware/adminPriv.js");
 
-chattingRouter.use(userRouter);
+//chattingRouter.use(userRouter);
 
 
 
 
-chattingRouter.get("/", function (req, res) {  
-    
-    data.find({sender: req.body.sender, reciever:req.body.reciever}, function (err, data) { //get user's posts
+chattingRouter.get("/:sender/:reciever", function(req, res) {  
+ console.log(req.params);
+    data.find({"sender": req.params.sender, "reciever":req.params.reciever}, function (err, data) { //get user's posts
         if (err) {
             res.status(500).send({
                 message: 'internal server error'
@@ -37,6 +37,12 @@ chattingRouter.get("/", function (req, res) {
 
 
 });
+
+
+
+
+
+
 
 
 

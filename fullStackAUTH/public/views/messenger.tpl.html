@@ -42,29 +42,21 @@
                     </div>
 -->
                 </div>
-                <div class="chat" data-chat="person2">
+                <div class="chat" data-chat="person2" >
                     <div class="conversation-start">
                         <span>Today, 5:38 PM</span>
                     </div>
-                    <div class="bubble you">
-                        Hello, can you hear me?
+                    <div ng-repeat='message in messages'>
+                    <div class="bubble you"  ng-if="message.sender==selectedUser" >
+                       {{message.message}}
                     </div>
-                    <div class="bubble you">
-                        I'm in California dreaming
+                    <div class="bubble me" ng-if="message.sender!=selectedUser" >
+                       {{message.message}}
                     </div>
-                    <div class="bubble me">
-                        ... about who we used to be.
                     </div>
-                    <div class="bubble me">
-                        Are you serious?
-                    </div>
-                    <div class="bubble you">
-                        When we were younger and free...
-                    </div>
-                    <div class="bubble you">
-                        I've forgotten how it felt before
-                    </div>
+
                 </div>
+<!--
                 <div class="chat" data-chat="person3">
                     <div class="conversation-start">
                         <span>Today, 3:38 AM</span>
@@ -78,6 +70,8 @@
                     <div class="bubble me">
                         ... what.
                     </div>
+-->
+<!--
                     <div class="bubble me">
                         Are you serious?
                     </div>
@@ -105,7 +99,10 @@
                         ... what.
                     </div>
                     <div class="bubble you">
+-->
+<!--
                         Are you serious?
+
                     </div>
                     <div class="bubble me">
                         I mean...
@@ -149,12 +146,13 @@
                     <div class="bubble you">
                         howdoyoudoaspace
                     </div>
-                </div>
+-->
+         
                 <div class="write">
                     <a href="javascript:;" class="write-link attach"></a>
-                    <input type="text" >
+                    <input type="text" ng-model='message' >
                     <a href="javascript:;" class="write-link smiley"></a>
-                    <a href="javascript:;" class="write-link send"  ></a>
+                    <a href="javascript:;" ng-click='sendMessage()' class="write-link send"  ></a>
                     </input>
                 </div>
             </div>

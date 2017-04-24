@@ -4,7 +4,8 @@ app.service("chattingService", function($http) {
 
     
     this.getMessages = function(data){
-        return $http.get("http://localhost:8070/chatting/", data);
+
+        return $http.get("http://localhost:8070/chatting/"+data.sender+"/"+data.reciever);
     }
     
   this.postMessage = function(data) {

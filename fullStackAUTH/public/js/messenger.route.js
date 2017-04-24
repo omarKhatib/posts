@@ -41,16 +41,42 @@ $('.left .person').mousedown(function(){
         
     }
     
-    var message={};
+    var message;
     $scope.getselectedUser=function(selectedusername){
+        
         $scope.selectedUser = selectedusername;
-        console.log("sender:"+privService.getUser()+" reciever:"+selectedusername);
-        message.push('sender':privService.getUser(), 'reciever':selectedusername);
+        message = {sender:privService.getUser(),reciever:selectedusername};
+        $scope.getMessages(message);
     }
     
-    $scope.getMessages = function(){
+    $scope.getMessages = function(message){
+        chattingService.getMessages(message).then(function(response){
+            
+        $scope.messages = response.data.data;
+//            if($scope.messages.sender== message.sender){
+//                alert(message.sender)
+//                $scope.senderMessages = response.data.data;
+//            }
+//            else{
+//                $scope.recieverMessages = response.data.data;
+//                console.log($scope.recieverMessages);
+//            }
+            
+            
+        });
         
+        
+    }
+    
+    $scope.sendMessage = function(){
+        message.message = $scope.message;
         console.log(message);
+        chattingService.postMessage(message).then(function(response){
+            console.log(response);
+            
+        })
+        
+        
         
         
     }
