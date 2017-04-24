@@ -3,9 +3,9 @@ var app = angular.module("todoApp", ["ngRoute", "app.home", "app.signup", "app.s
 app.config(function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix("");
   $routeProvider.when("/", {
-    redirectTo: "/home"
+    redirectTo: "/signin"
   }).otherwise({
-    redirectTo: "/home"
+    redirectTo: "/signin"
   });
 });
 

@@ -47,10 +47,10 @@
                         <span>Today, 5:38 PM</span>
                     </div>
                     <div ng-repeat='message in messages'>
-                    <div class="bubble you"   >
+                    <div class="bubble you"  ng-if='message.sender==selectedUser' >
                        {{message.message}}
                     </div>
-                    <div class="bubble me" >
+                    <div class="bubble me" ng-if='message.sender!=selectedUser'>  {{message.message}}
                     </div>
                     </div>
 

@@ -53,6 +53,7 @@ $('.left .person').mousedown(function(){
         chattingService.getMessages(message).then(function(response){
             
         $scope.messages = response.data.data;
+      
 //            if($scope.messages.sender== message.sender){
 //                alert(message.sender)
 //                $scope.senderMessages = response.data.data;
