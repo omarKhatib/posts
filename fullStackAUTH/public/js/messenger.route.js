@@ -26,6 +26,16 @@ $('.left .person').mousedown(function(){
         $('.chat[data-chat = '+findChat+']').addClass('active-chat');
     }
 });
+      $scope.socket = {};
+    $scope.newMessages = [];
+          $scope.loadConnection = function() {
+    $scope.socket = chattingService.connect();
+    chattingService.getChat($scope.socket, function(data) {
+      console.log(data);
+      $scope.newMessages.push(data);
+      $scope.$apply();
+    });
+  };
     
     
     //chatting jquery
@@ -40,6 +50,10 @@ $('.left .person').mousedown(function(){
         })
         
     }
+    
+    
+    
+    
     
     var message;
     $scope.getselectedUser=function(selectedusername){
@@ -73,6 +87,8 @@ $('.left .person').mousedown(function(){
         message.message = $scope.message;
         console.log(message);
         chattingService.postMessage(message).then(function(response){
+             chattingService.emitChat($scope.socket, message.sender,message.reciever,message.message);
+    $scope.message = "";
             console.log(response);
             
         })
