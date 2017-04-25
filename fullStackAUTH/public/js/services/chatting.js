@@ -28,7 +28,8 @@ app.service("chattingService", function($http) {
   };
     
     
-     this.emitChat = function(socket, sender,reciever,message) {
+     this.emitChat = function(socket,sender,reciever,message) {
+         console.log('sender');
     socket.emit("message", {sender:sender,reciever:reciever,message: message});
   };
 

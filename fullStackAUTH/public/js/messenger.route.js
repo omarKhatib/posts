@@ -27,12 +27,13 @@ $('.left .person').mousedown(function(){
     }
 });
       $scope.socket = {};
-    $scope.newMessages = [];
+    $scope.messages = [];
           $scope.loadConnection = function() {
     $scope.socket = chattingService.connect();
     chattingService.getChat($scope.socket, function(data) {
+        console.log('new data');
       console.log(data);
-      $scope.newMessages.push(data);
+      $scope.messages.push(data);
       $scope.$apply();
     });
   };
@@ -67,7 +68,7 @@ $('.left .person').mousedown(function(){
     $scope.getMessages = function(message){
         chattingService.getMessages(message).then(function(response){
             
-        $scope.messages = response.data.data;
+        $scope.oldMessages = response.data.data;
       
 //            if($scope.messages.sender== message.sender){
 //                alert(message.sender)
@@ -87,11 +88,12 @@ $('.left .person').mousedown(function(){
     $scope.sendMessage = function(){
         message.message = $scope.message;
         console.log(message);
-        chattingService.postMessage(message).then(function(response){
-             chattingService.emitChat($scope.socket, message.sender,message.reciever,message.message);
-    $scope.message = "";
-            $scope.messages.push(message);
+        chattingService.postMessage(message).then(function(response){ chattingService.emitChat($scope.socket,message.sender,message.reciever,message.message);
+                     $scope.message = "";
+//            $scope.messages.push(message);
             console.log($scope.messages);
+            
+
             
         })
         

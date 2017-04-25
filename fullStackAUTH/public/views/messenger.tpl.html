@@ -47,7 +47,7 @@
                         <span>Today, 5:38 PM</span>
                     </div>
                     
-                       <div ng-repeat='message in newMessages'>
+                       <div ng-repeat='message in oldMessages'>
                     <div class="bubble you"  ng-if='message.sender==selectedUser' >
                        {{message.message}}
                     </div>
@@ -56,10 +56,10 @@
                     </div>
                     
                     <div ng-repeat='message in messages'>
-                    <div class="bubble you"  ng-if='message.sender==selectedUser' >
+                    <div class="bubble you"  ng-if='message.reciever!=selectedUser' >
                        {{message.message}}
                     </div>
-                    <div class="bubble me" ng-if='message.sender!=selectedUser'>  {{message.message}}
+                    <div class="bubble me" ng-if='message.reciever==selectedUser' >  {{message.message}}
                     </div>
                     </div>
     
