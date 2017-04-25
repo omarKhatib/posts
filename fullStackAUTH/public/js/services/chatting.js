@@ -3,7 +3,7 @@ var app = angular.module("chattingModule", []);
 app.service("chattingService", function($http) {
     
       this.connect = function() {
-    return chattingService("/");
+    return io("/");
   };
     
     

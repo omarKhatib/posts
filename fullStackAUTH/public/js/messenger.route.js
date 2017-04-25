@@ -36,6 +36,7 @@ $('.left .person').mousedown(function(){
       $scope.$apply();
     });
   };
+
     
     
     //chatting jquery
@@ -89,7 +90,8 @@ $('.left .person').mousedown(function(){
         chattingService.postMessage(message).then(function(response){
              chattingService.emitChat($scope.socket, message.sender,message.reciever,message.message);
     $scope.message = "";
-            console.log(response);
+            $scope.messages.push(message);
+            console.log($scope.messages);
             
         })
         
