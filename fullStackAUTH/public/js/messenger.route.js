@@ -62,8 +62,12 @@ $('.left .person').mousedown(function(){
     $scope.getselectedUser=function(selectedusername){
         
         $scope.selectedUser = selectedusername;
+        
         message = {sender:$scope.username,reciever:selectedusername};
+        
         $scope.getMessages(message);
+         var element = document.getElementById("t");
+    element.scrollTop = element.scrollHeight; //make scroll on bottom after sending new message 
     }
     
     $scope.getMessages = function(message){
@@ -90,6 +94,8 @@ $('.left .person').mousedown(function(){
         message.message = $scope.message;
         console.log(message);
         chattingService.postMessage(message).then(function(response){ chattingService.emitChat($scope.socket,message.sender,message.reciever,message.message);
+ var element = document.getElementById("t");
+    element.scrollTop = element.scrollHeight; //make scroll on bottom after sending new message 
                      $scope.message = "";
 //            $scope.messages.push(message);
             console.log($scope.messages);
