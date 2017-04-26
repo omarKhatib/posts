@@ -28,6 +28,7 @@ $('.left .person').mousedown(function(){
 });
       $scope.socket = {};
     $scope.messages = [];
+    $scope.username = privService.getUser();
           $scope.loadConnection = function() {
     $scope.socket = chattingService.connect();
     chattingService.getChat($scope.socket, function(data) {
@@ -61,7 +62,7 @@ $('.left .person').mousedown(function(){
     $scope.getselectedUser=function(selectedusername){
         
         $scope.selectedUser = selectedusername;
-        message = {sender:privService.getUser(),reciever:selectedusername};
+        message = {sender:$scope.username,reciever:selectedusername};
         $scope.getMessages(message);
     }
     

@@ -11,7 +11,7 @@
 
 
 
-                    <li ng-click='getselectedUser(user.username)' class="person" data-chat="person6">
+                    <li ng-if="user.username!=username" ng-click='getselectedUser(user.username)' class="person" data-chat="person6">
                         <img ng-src="{{user.profileImage}}" alt="" />
                         <span class="name">{{user.username}}</span>
                         <span class="time">2:09 PM</span>
