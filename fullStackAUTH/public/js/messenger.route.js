@@ -42,7 +42,7 @@ $('.left .person').mousedown(function(){
     
     
     //chatting jquery
-    
+
     $scope.getUsers = function(){
         authService.getUsers().then(function(response){
            $scope.users= response.data.data;
@@ -53,6 +53,7 @@ $('.left .person').mousedown(function(){
         })
         
     }
+
     
     
     
@@ -69,6 +70,8 @@ $('.left .person').mousedown(function(){
          var element = document.getElementById("t");
     element.scrollTop = element.scrollHeight; //make scroll on bottom after sending new message 
     }
+    
+
     
     $scope.getMessages = function(message){
         chattingService.getMessages(message).then(function(response){

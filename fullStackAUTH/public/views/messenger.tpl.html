@@ -4,10 +4,10 @@
         <div class="container">
             <div class="left">
                 <div class="top">
-                    <input type="text" />
+                    <input ng-model='searchKey'  type="text" />
 <!--                    <a href="javascript:;" class="search"></a>-->
                 </div>
-                <ul class="people" ng-repeat='user in users'>
+                <ul class="people" ng-repeat='user in users | filter : searchKey'>
 
 
 
