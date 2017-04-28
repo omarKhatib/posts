@@ -191,14 +191,26 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
       <div class="w3-row-padding">
         <div class="w3-col m12">
-          <div class="w3-card-2 w3-round w3-white">
+<!--          <div class="w3-card-2 w3-round w3-white">-->
+<!--
             <div class="w3-container w3-padding">
               <textarea style='width: 100%;' ng-model='post' contenteditable="true" class="w3-border w3-padding postTextArea">Status: Feeling Blue</textarea>
               <button ng-click='addPost()' type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
             </div>
-          </div>
+-->
+         <div class='textAreaAndButton'>
+   <textarea  ng-model='post' class="form-control postTextArea" rows="5"  placeholder='write any thing......'></textarea>
+   
+   <input type='url' placeholder='image URL' ng-model='image' class="form-control postTextArea">
+   <center>
+    <button id='addbtn'  ng-click='addPost()' class='btn btn-primary postBtn'>post</button>
+        
+    </center>
+    </div>
+<!--          </div>-->
         </div>
       </div>
+<!--
       <div  ng-repeat = 'post in posts.data | orderBy:"-likes"'>
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
         <img ng-src="{{i}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
@@ -211,7 +223,35 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
       </div>
         </div>
+-->
+    <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
+    <div class="card w-75 post" >
+        <span id='remove' class='glyphicon glyphicon-remove' ng-click='remove(post._id)'></span>
+        
+
+    
+        
+  <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
+      <img id='postProfileImage' ng-src="{{i}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
+      <h4 id='postUsername' style='float:left'><b>{{post.username}}</b></h4><br>
+      <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       
+      <img id='postImg' ng-src='{{post.image}}' />
+    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>
+    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
+      <span id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
+      <span id='comment' class='glyphicon glyphicon-comment postIcons' ng-click='showComments=!showComments;getComments(post._id)'></span>
+      <span id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
+  </div>
+        <div ng-show='showComments' class='commentsBlock'>
+        <hr>
+        <input id='commentTextField' ng-model='comment'  placeholder='comment' type='text' class='form-control'>
+            <button ng-click='addComment(post._id, comment)' class='commentbtn'>add</button>
+            <p ng-repeat='c in comments track by $index'><span>{{c}}</span></p>
+            
+        </div>
+</div>
+    </div>
 
     </div>
     
