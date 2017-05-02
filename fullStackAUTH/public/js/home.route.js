@@ -17,7 +17,7 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
     
   $scope.get = function(){
         console.log('getting data');
-        Service.getPosts().then(function(response){
+        Service.getUserPosts($scope.username).then(function(response){
             $scope.posts = response.data;
             console.log($scope.posts);
             

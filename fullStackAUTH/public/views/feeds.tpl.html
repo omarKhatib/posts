@@ -1,1 +1,398 @@
-<h1>feeds</h1>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+</style>
+<div class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top" ng-init='getAllUsersPosts();'>
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+  <a href="#feeds" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+  <a href="#messenger" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
+      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
+      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+    </div>
+  </div>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
+ </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card-2 w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">{{username}}</h4>
+         <p class="w3-center"><img ng-src='{{i}}'  style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+        </div>
+      </div>
+      <br>
+      
+      <!-- Accordion -->
+      <div class="w3-card-2 w3-round">
+        <div class="w3-white">
+          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
+          <div id="Demo1" class="w3-hide w3-container">
+            <p>Some text..</p>
+          </div>
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+          <div id="Demo2" class="w3-hide w3-container">
+            <p>Some other text..</p>
+          </div>
+          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+          <div id="Demo3" class="w3-hide w3-container">
+         <div class="w3-row-padding">
+         <br>
+           <div class="w3-half">
+             <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="/w3images/fjords.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+         </div>
+          </div>
+        </div>      
+      </div>
+      <br>
+      
+      <!-- Interests --> 
+      <div class="w3-card-2 w3-round w3-white w3-hide-small">
+        <div class="w3-container">
+          <p>Interests</p>
+          <p>
+            <span class="w3-tag w3-small w3-theme-d5">News</span>
+            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
+            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
+            <span class="w3-tag w3-small w3-theme-d2">Games</span>
+            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
+            <span class="w3-tag w3-small w3-theme">Games</span>
+            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
+            <span class="w3-tag w3-small w3-theme-l2">Food</span>
+            <span class="w3-tag w3-small w3-theme-l3">Design</span>
+            <span class="w3-tag w3-small w3-theme-l4">Art</span>
+            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+          </p>
+        </div>
+      </div>
+      <br>
+      
+      <!-- Alert Box -->
+      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+          <i class="fa fa-remove"></i>
+        </span>
+        <p><strong>Hey!</strong></p>
+        <p>People are looking at your profile. Find out who.</p>
+      </div>
+    
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+    
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+<!--          <div class="w3-card-2 w3-round w3-white">-->
+<!--
+            <div class="w3-container w3-padding">
+              <textarea style='width: 100%;' ng-model='post' contenteditable="true" class="w3-border w3-padding postTextArea">Status: Feeling Blue</textarea>
+              <button ng-click='addPost()' type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+            </div>
+-->
+         <div class='textAreaAndButton'>
+   <textarea  ng-model='post' class="form-control postTextArea" rows="5"  placeholder='write any thing......'></textarea>
+   
+   <input type='url' placeholder='image URL' ng-model='image' class="form-control postTextArea">
+   <center>
+    <button id='addbtn'  ng-click='addPost()' class='btn btn-primary postBtn'>post</button>
+        
+    </center>
+    </div>
+<!--          </div>-->
+        </div>
+      </div>
+<!--
+      <div  ng-repeat = 'post in posts.data | orderBy:"-likes"'>
+      <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
+        <img ng-src="{{i}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity">1 min</span>
+        <h4 style='float:left'>{{post.username}}</h4><br>
+        <hr class="w3-clear">
+        <p>{{post.post}}</p>
+        <img id='postImg' ng-src='{{post.image}}' />
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+      </div>
+        </div>
+-->
+    <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
+        
+    <div class="card w-75 post" >
+        <span ng-if="post.username == username" id='remove' class='glyphicon glyphicon-remove' ng-click='remove(post._id)'></span>
+        
+
+    
+        
+  <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
+<!--      {{getProfilesImages(post.username)}}-->
+      <img id='postProfileImage' ng-src="{{i}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
+      <h4 id='postUsername' style='float:left'><b>{{post.username}}</b></h4><br>
+      <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
+      
+      <img id='postImg' ng-src='{{post.image}}' />
+    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>
+    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
+      <span id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
+      <span id='comment' class='glyphicon glyphicon-comment postIcons' ng-click='showComments=!showComments;getComments(post._id)'></span>
+      <span id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
+  </div>
+        <div ng-show='showComments' class='commentsBlock'>
+        <hr>
+        <input id='commentTextField' ng-model='comment'  placeholder='comment' type='text' class='form-control'>
+            <button ng-click='addComment(post._id, comment)' class='commentbtn'>add</button>
+            <p ng-repeat='c in comments track by $index'><span>{{c}}</span></p>
+            
+        </div>
+</div>
+    </div>
+
+    </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+<!--
+      <div class="w3-card-2 w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Upcoming Events:</p>
+          <img src="https://www.w3schools.com/w3images/forest.jpg" alt="Forest" style="width:100%;">
+          <p><strong>Holiday</strong></p>
+          <p>Friday 15:00</p>
+          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+        </div>
+      </div>
+-->
+        
+        
+                <!-- weather widget start -->
+        <div id="m-booked-bl-simple-week-vertical-40188">
+            <div class="booked-wzs-160-275 weather-customize" style="background-color:#137AE9; width:160px;" id="width1 ">
+                <a target="_blank" class="booked-wzs-top-160-275" href="http://www.booked.net/"><img src="//s.bookcdn.com/images/letter/s5.gif" alt="Booked" /></a>
+                <div class="booked-wzs-160-275_in">
+                    <div class="booked-wzs-160-275-data">
+                        <div class="booked-wzs-160-275-left-img wrz-01"></div>
+                        <div class="booked-wzs-160-275-right">
+                            <div class="booked-wzs-day-deck">
+                                <div class="booked-wzs-day-val">
+                                    <div class="booked-wzs-day-number"><span class="plus">+</span>21</div>
+                                    <div class="booked-wzs-day-dergee">
+                                        <div class="booked-wzs-day-dergee-val">&deg;</div>
+                                        <div class="booked-wzs-day-dergee-name">C</div>
+                                    </div>
+                                </div>
+                                <div class="booked-wzs-day">
+                                    <div class="booked-wzs-day-d"><span class="plus">+</span>21&deg;</div>
+                                    <div class="booked-wzs-day-n"><span class="plus">+</span>13&deg;</div>
+                                </div>
+                            </div>
+                            <div class="booked-wzs-160-275-info">
+                                <div class="booked-wzs-160-275-city">Beirut</div>
+                                <div class="booked-wzs-160-275-date">Saturday, 29</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a target="_blank" href="http://www.booked.net/weather/beirut-977" class="booked-wzs-bottom-160-275">
+                        <table cellpadding="0" cellspacing="0" class="booked-wzs-table-160">
+                            <tr>
+                                <td class="week-day"> <span class="week-day-txt">Sunday</span></td>
+                                <td class="week-day-ico">
+                                    <div class="wrz-sml wrzs-03"></div>
+                                </td>
+                                <td class="week-day-val"><span class="plus">+</span>22&deg;</td>
+                                <td class="week-day-val"><span class="plus">+</span>12&deg;</td>
+                            </tr>
+                            <tr>
+                                <td class="week-day"> <span class="week-day-txt">Monday</span></td>
+                                <td class="week-day-ico">
+                                    <div class="wrz-sml wrzs-18"></div>
+                                </td>
+                                <td class="week-day-val"><span class="plus">+</span>22&deg;</td>
+                                <td class="week-day-val"><span class="plus">+</span>11&deg;</td>
+                            </tr>
+                            <tr>
+                                <td class="week-day"> <span class="week-day-txt">Tuesday</span></td>
+                                <td class="week-day-ico">
+                                    <div class="wrz-sml wrzs-18"></div>
+                                </td>
+                                <td class="week-day-val"><span class="plus">+</span>20&deg;</td>
+                                <td class="week-day-val"><span class="plus">+</span>13&deg;</td>
+                            </tr>
+                            <tr>
+                                <td class="week-day"> <span class="week-day-txt">Wednesday</span></td>
+                                <td class="week-day-ico">
+                                    <div class="wrz-sml wrzs-18"></div>
+                                </td>
+                                <td class="week-day-val"><span class="plus">+</span>19&deg;</td>
+                                <td class="week-day-val"><span class="plus">+</span>18&deg;</td>
+                            </tr>
+                            <tr>
+                                <td class="week-day"> <span class="week-day-txt">Thursday</span></td>
+                                <td class="week-day-ico">
+                                    <div class="wrz-sml wrzs-18"></div>
+                                </td>
+                                <td class="week-day-val"><span class="plus">+</span>19&deg;</td>
+                                <td class="week-day-val"><span class="plus">+</span>18&deg;</td>
+                            </tr>
+                            <tr>
+                                <td class="week-day"> <span class="week-day-txt">Friday</span></td>
+                                <td class="week-day-ico">
+                                    <div class="wrz-sml wrzs-01"></div>
+                                </td>
+                                <td class="week-day-val"><span class="plus">+</span>20&deg;</td>
+                                <td class="week-day-val"><span class="plus">+</span>19&deg;</td>
+                            </tr>
+                        </table>
+                     
+                    </a>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var css_file = document.createElement("link");
+                css_file.setAttribute("rel", "stylesheet");
+                css_file.setAttribute("type", "text/css");
+                css_file.setAttribute("href", 'https://s.bookcdn.com/css/w/booked-wzs-widget-160x275.css?v=0.0.1');
+                document.getElementsByTagName("head")[0].appendChild(css_file);
+
+                function setWidgetData(data) {
+                    if (typeof (data) != 'undefined' && data.results.length > 0) {
+                        for (var i = 0; i < data.results.length; ++i) {
+                            var objMainBlock = document.getElementById('m-booked-bl-simple-week-vertical-40188');
+                            if (objMainBlock !== null) {
+                                var copyBlock = document.getElementById('m-bookew-weather-copy-' + data.results[i].widget_type);
+                                objMainBlock.innerHTML = data.results[i].html_code;
+                                if (copyBlock !== null) objMainBlock.appendChild(copyBlock);
+                            }
+                        }
+                    } else {
+                        alert('data=undefined||data.results is empty');
+                    }
+                }
+            </script>
+            <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/weather/info?action=get_weather_info&ver=6&cityID=977&type=4&scode=2&ltid=3457&domid=w209&anc_id=82666&cmetric=1&wlangID=1&color=137AE9&wwidth=160&header_color=ffffff&text_color=333333&link_color=08488D&border_form=1&footer_color=ffffff&footer_text_color=333333&transparent=0"></script>
+             weather widget end 
+        </div>
+      <br>
+      
+      <div class="w3-card-2 w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Friend Request</p>
+          <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
+          <span>Jane Doe</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      
+      <div class="w3-card-2 w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div>
+      <br>
+      
+      <div class="w3-card-2 w3-round w3-white w3-padding-32 w3-center">
+        <p><i class="fa fa-bug w3-xxlarge"></i></p>
+      </div>
+      
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<br>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-d3 w3-padding-16">
+  <h5>Footer</h5>
+</footer>
+
+<footer class="w3-container w3-theme-d5">
+
+</footer>
+ 
+<script>
+// Accordion
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</div>
+
