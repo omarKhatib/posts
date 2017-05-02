@@ -92,11 +92,12 @@ app.controller("feedsCtrl", function($scope, Service, privService, tokenService,
 //        }
     
     
-          $scope.getProfilesImages  =function(user){
+          $scope.getProfilesImages =function(user){
+              console.log(user);
            
-            authService.getProfileImage("cr7").then(function(response){
-                console.log(response.data.data);
-                $scope.i = response.data.data.profileImage;
+            authService.getProfileImage(user).then(function(response){
+               $scope.i = response.data.data.profileImage;
+                console.log($scope.i);
                 
                 
             }, function(response){
