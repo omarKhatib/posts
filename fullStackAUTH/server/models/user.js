@@ -15,6 +15,28 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
+    placeOfbirth:{
+        type:String,
+        required:true
+        
+        
+        
+        },
+        dateOfbirth:{
+        type:Date,
+        required:true,
+        
+        
+        
+        },
+            job:{
+        type:String,
+        required:true,
+        
+        
+        
+        },
+    
   privilage: {
     type: String,
     default: "user",
