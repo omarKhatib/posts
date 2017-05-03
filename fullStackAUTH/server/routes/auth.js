@@ -67,6 +67,7 @@ authRouter.get("/:username", function (req, res) {
 authRouter.post("/signup", function(req, res) {
   //If the username is already taken
   //If not then add the user
+    console.log(req.body);
   User.find({username: req.body.username}, function(err, data) {
     if(err) {
       res.status(500).send({"message": "Error", err: err});
@@ -104,5 +105,44 @@ authRouter.post("/signin", function(req, res) {
     }
   });
 });
+
+authRouter.put("/:username", function (req, res) {
+    console.log(req.body);
+ User.findOne({
+        username: req.params.username
+    }, function (err, data) {
+        if (err) {
+            res.status(500).send({
+                message: 'internal error' + err
+            });
+
+        } else if (data == undefined) {
+
+            res.status(404).send({
+                message: 'not found'
+            });
+        } else {
+            for (key in req.body) {
+                data[key] = req.body[key]
+
+            }
+
+
+
+            data.save();
+            res.status(200).send({
+                updatedData: data
+            })
+
+
+        }
+
+    });
+
+
+});
+
+
+
 
 module.exports = authRouter;

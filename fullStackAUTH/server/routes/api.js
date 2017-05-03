@@ -166,7 +166,7 @@ apiRouter.post("/:id", function (req, res) { //to add comment
 });
 
 apiRouter.put("/:id", function (req, res) {
-    // console.log(req.params.id);
+    // post edit
     data.findOne({
         _id: req.params.id
     }, function (err, data) {
@@ -200,6 +200,8 @@ apiRouter.put("/:id", function (req, res) {
 
 
 });
+
+
 
 //apiRouter.use(adminPriv);
 

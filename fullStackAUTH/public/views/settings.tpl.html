@@ -3,54 +3,10 @@
 <div class="container-fluid">
     <div class="row profile">
         <div class="col-md-3">
-            <div class="profile-sidebar">
-
-                <div class="profile-userpic">
-                    <img src="/images/user.png" class="img-responsive" alt="">
-                </div>
-                <div class="profile-userbuttons">
-                    <button type="button" class="btn btn-success btn-sm">Follow</button>
-                    <button type="button" class="btn btn-danger btn-sm">Message</button>
-                </div>
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">
-                        Soeurette El Kurdy
-                    </div>
-                    <div class="profile-usertitle-job">
-                        Web Developer
-                    </div>
-                    <div class="profile-usertitle-job">
-                        23 / 06 / 1980
-                    </div>
-                </div>
-
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="#/home">
-                                <i class="glyphicon glyphicon-home"></i> Profile </a>
-                        </li>
-                        <li>
-                            <a href="#/AccountSettings">
-                                <i class="glyphicon glyphicon-user"></i> Account Settings </a>
-                        </li>
-                        <li>
-                            <a href="#/Friends">
-                                <i class="glyphicon glyphicon-calendar"></i> Friends </a>
-                        </li>
-                        <li>
-                            <a href="#/Gallery">
-                                <i class="glyphicon glyphicon-calendar"></i> Gallery </a>
-                        </li>
-                           <li>
-                            <button class="btn btn-danger" ng-click="Signout()">Sign Out</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+ 
         </div>
         <center>
-            <div class="col-md-7">
+            <div class="col-md-7" ng-init='getInfo()'>
                 <div class="profile-content">
                     <div class="row">
                         <div class="col-md-12">
@@ -59,21 +15,27 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <input ng-model="userInput.firstName" class="form-control" placeholder="firstName">
+                            <input ng-model="username" class="form-control" placeholder="username">
                             <br>
-                            <input ng-model="userInput.DateOfBirth" class="form-control" placeholder="Date Of Birth">
+                            
+                                                        <input ng-model="i" class="form-control" placeholder="profileImage">
+                            
                             <br>
-                            <input ng-model="userInput.Interests" class="form-control" placeholder="Interests">
+                            <input type='date' ng-model="DOB" class="form-control" placeholder="Date Of Birth">
+                            <br>
+
                         </div>
                         <div class="col-md-6">
-                            <input ng-model="userInput.lastName" class="form-control" placeholder="last Name">
+
                             <br>
-                            <input ng-model="userInput.PlaceOfBirth" class="form-control" placeholder="Place Of Birth">
+                            <input ng-model="POB" class="form-control" placeholder="Place Of Birth">
                             <br>
-                            <input ng-model="userInput.gender" class="form-control" placeholder="Gender">
+            <input ng-model="job" class="form-control" placeholder="job">
+
                         </div>
 
                     </div>
+<!--
                     <div class="row">
                         <div class="col-md-12">
                             <h1> Academic Information</h1>
@@ -88,10 +50,11 @@
                             </div>
 
                         </div>
+-->
                         <div class="row">
                             <div class="col-md-12" style="text-align:center">
                                 <hr/>
-                                <button ng-click="submit()" class="btn btn-primary">Submit</button>
+                                <button ng-click="update()" class="btn btn-primary">update</button>
                             </div>
                         </div>
                     </div>

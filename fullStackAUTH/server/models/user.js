@@ -18,10 +18,8 @@ var userSchema = new Schema({
     placeOfbirth:{
         type:String,
         required:true
-        
-        
-        
         },
+    
         dateOfbirth:{
         type:Date,
         required:true,

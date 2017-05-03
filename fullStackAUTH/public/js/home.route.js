@@ -59,12 +59,20 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
     }
     
     $scope.username = privService.getUser(); //get username for each post
+
     
-      $scope.getProfileImage  =function(){
+    
+    
+    
+    
+      $scope.getProfileImage  =function(){       //get profile image , dop ,pob and job
             alert('getting user data');
             authService.getProfileImage($scope.username).then(function(response){
                 console.log(response.data.data);
                 $scope.i = response.data.data.profileImage;
+                $scope.job = response.data.data.job;
+                $scope.POB = response.data.data.placeOfbirth;
+                $scope.DOB = response.data.data.dateOfbirth;
                 
                 
             }, function(response){

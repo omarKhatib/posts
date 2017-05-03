@@ -33,4 +33,6 @@ app.service("Service", function($http) {
           return $http.post("http://localhost:8070/posts/"+id+'/',data);
           
       }
+      
+
 });
