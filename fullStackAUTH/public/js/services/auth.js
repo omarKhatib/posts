@@ -25,4 +25,9 @@ app.service("authService", function($http) {
 
           return $http.put("http://localhost:8070/auth/"+username+'/',data);
       }
+      
+          this.follow = function(username, data){
+
+          return $http.post("http://localhost:8070/auth/"+username+'/',data);
+      }
 });

@@ -39,7 +39,14 @@ var userSchema = new Schema({
     type: String,
     default: "user",
     enum: ["admin", "user"]
-  }
+  },
+    
+    followers:{
+        type:[String];
+    
+}
+    
+    
 });
 
 module.exports = mongoose.model("User", userSchema);

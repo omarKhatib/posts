@@ -180,7 +180,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
 
       <img id='postProfileImage' ng-src="{{i}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
-      <h4 id='postUsername' style='float:left'><b>{{post.username}}</b></h4><br>
+      <h4 ng-click='get(post.username)' id='postUsername' style='float:left'><b>{{post.username}}</b></h4><br>
       <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       
       <img id='postImg' ng-src='{{post.image}}' />

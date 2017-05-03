@@ -25,7 +25,8 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
             
         })
     }
-    
+  
+
     $scope.addPost = function(){
         var postArr = $scope.post.split(" ");
         //var tags = [];
@@ -156,6 +157,16 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
              
          });
          
+         
+         
+     }
+     
+     
+     $scope.follow = function(u){
+         
+         var follower = {follower:privService.getUser()}
+         console.log(u);
+         console.log(follower.follower);
          
          
      }

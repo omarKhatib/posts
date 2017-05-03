@@ -4,7 +4,7 @@
         <div class="container">
             <div class="left">
                 <div class="top">
-                    <input ng-model='searchKey'  type="text" />
+                    <input ng-model='searchKey' placeholder='search' type="text" />
 <!--                    <a href="javascript:;" class="search"></a>-->
                 </div>
                 <ul class="people" ng-repeat='user in users | filter : searchKey'>
@@ -160,7 +160,7 @@
          
                 <div class="write">
                     
-                    <input type="text" ng-model='message' >
+                    <input type="text" placeholder="hit me a message" ng-model='message' >
                     
                     <a href="javascript:;" ng-click='sendMessage()' class="write-link send"  ></a>
                     </input>

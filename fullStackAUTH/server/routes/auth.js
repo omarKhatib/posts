@@ -106,7 +106,7 @@ authRouter.post("/signin", function(req, res) {
   });
 });
 
-authRouter.put("/:username", function (req, res) {
+authRouter.put("/:username", function (req, res) {  //update personal info
     console.log(req.body);
  User.findOne({
         username: req.params.username
@@ -138,6 +138,43 @@ authRouter.put("/:username", function (req, res) {
         }
 
     });
+
+
+});
+
+
+authRouter.post("/:username", function (req, res) { //to add comment
+    var follower = req.body.follower;
+    data.findOne({
+        username: req.params.username
+    }, function (err, d) {
+        if (err) {
+            res.status(500).send({
+                message: 'error'
+            });
+
+        } else {
+            d.followers.push(follower);
+            d.save(function (err, data) {
+                if (err) {
+                    res.status(500).send({
+                        message: 'error'
+                    });
+
+
+                } else {
+                    res.status(200).send({
+                        'data': data
+                    });
+                }
+
+            });
+
+
+        }
+
+
+    })
 
 
 });

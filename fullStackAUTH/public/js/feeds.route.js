@@ -39,6 +39,19 @@ app.controller("feedsCtrl", function($scope, Service, privService, tokenService,
         })
     }
     
+    
+        $scope.get = function(uu){
+        console.log('getting data');
+        Service.getUserPosts(uu).then(function(response){
+            $scope.posts = response.data;
+            console.log($scope.posts);
+            
+            
+            
+        })
+    }
+    
+    
     $scope.addPost = function(){
         var postArr = $scope.post.split(" ");
         //var tags = [];
