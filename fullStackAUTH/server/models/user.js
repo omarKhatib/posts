@@ -42,7 +42,7 @@ var userSchema = new Schema({
   },
     
     followers:{
-        type:[String];
+        type:[String]
     
 }
     
