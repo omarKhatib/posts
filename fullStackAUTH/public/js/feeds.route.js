@@ -26,13 +26,35 @@ app.controller("feedsCtrl", function($scope, Service, privService, tokenService,
 //            
 //        })
 //    }
+    
+    
+    
+    $scope.notifications =[];
+$scope.loadConnection = function() {
+    
+  
+    $scope.socket = Service.connect();
+    Service.getNotification($scope.socket, function(data) {
+          
+        if(data.to == $scope.username){
+   
+            
+            $scope.notifications.push(data);
+            $scope.notificationNum = $scope.notifications.length;
+            console.log($scope.notifications);
+            console.log($scope.notificationNum);
+            $scope.$apply();
+
+        }
+    });
+  };
   
   
     $scope.getAllUsersPosts = function(){
         console.log('getting data');
         Service.getAllUsersPosts().then(function(response){
-            $scope.posts = response.data;
-            console.log($scope.posts);
+            $scope.postss = response.data;
+            console.log($scope.postss);
             
             
             
@@ -149,10 +171,15 @@ app.controller("feedsCtrl", function($scope, Service, privService, tokenService,
     }
   
       
-    $scope.like = function(id,post,likes,disLikes){
+    $scope.like = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes+1, disLikes:disLikes};
         Service.likeDisLike(id,data).then(function(response){
+            Service.emitNotification($scope.socket,privService.getUser(),to,'like');
             $scope.getAllUsersPosts();
+            
+              
+
+  
             
             
             

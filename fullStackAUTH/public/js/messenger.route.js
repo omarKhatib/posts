@@ -103,12 +103,7 @@ $('.left .person').mousedown(function(){
 //            $scope.messages.push(message);
             console.log($scope.messages);
             
-
-            
         })
-        
-        
-        
         
     }
 

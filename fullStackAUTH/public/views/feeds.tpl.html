@@ -11,7 +11,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <div class="w3-theme-l5">
 
 <!-- Navbar -->
-<div class="w3-top" ng-init='getAllUsersPosts();'>
+<div class="w3-top" ng-init='getAllUsersPosts();loadConnection()'>
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
@@ -19,11 +19,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   <a href="#messenger" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{notificationNum}}</span></button>     
+    <div  class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+      <a href="#" class="w3-bar-item w3-button" ng-repeat='notification in notifications'>{{notification.action}}</a>
+
     </div>
   </div>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
@@ -169,7 +168,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       </div>
         </div>
 -->
-    <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
+    <div ng-repeat = 'post in postss.data | orderBy:"-likes"'>
         
     <div class="card w-75 post" >
         <span ng-if="post.username == username" id='remove' class='glyphicon glyphicon-remove' ng-click='remove(post._id)'></span>
@@ -184,11 +183,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       
       <img id='postImg' ng-src='{{post.image}}' />
-    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>
+    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes,post.username)'>{{post.likes}}</span>
     <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
       <span id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
       <span id='comment' class='glyphicon glyphicon-comment postIcons' ng-click='showComments=!showComments;getComments(post._id)'></span>
-      <span id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
+      <span  id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
   </div>
         <div ng-show='showComments' class='commentsBlock'>
         <hr>

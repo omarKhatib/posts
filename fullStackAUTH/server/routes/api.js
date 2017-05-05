@@ -166,7 +166,7 @@ apiRouter.post("/:id", function (req, res) { //to add comment
 });
 
 apiRouter.put("/:id", function (req, res) {
-    // post edit
+  console.log(req.body);
     data.findOne({
         _id: req.params.id
     }, function (err, data) {
@@ -181,10 +181,13 @@ apiRouter.put("/:id", function (req, res) {
                 message: 'not found'
             });
         } else {
-            for (key in req.body) {
-                data[key] = req.body[key]
+            
+                data['likes'] = req.body['likes'];
+            data['disLikes'] = req.body['disLikes'];
+            data['post'] = req.body['post'];
+                
 
-            }
+
 
 
 

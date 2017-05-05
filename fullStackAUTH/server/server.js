@@ -55,7 +55,16 @@ io.on("connection", function(socket) {
     console.log(data);
     console.log("I am getting a message");
     io.emit("message", {"sender": data.user, "reciever":data.reciever, "message": data.message});
+  });
+    
+      socket.on("notification", function(data) {
+    console.log(data);
+io.emit("notification", {"from":data.from , "to":data.to , "action":data.action});
   })
+    
+    
+    
+    
 });
 
 
