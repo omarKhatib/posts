@@ -21,9 +21,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{notificationNum}}</span></button>     
     <div  class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button" ng-repeat='notification in notifications'>{{notification.action}}</a>
+      <span class="w3-bar-item w3-button" ng-repeat='notification in notifications'>{{notification.from}} {{notification.action}}s your post : {{notification.post}} <hr></span>
 
     </div>
+      
   </div>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
  </div>
@@ -168,7 +169,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       </div>
         </div>
 -->
-    <div ng-repeat = 'post in postss.data | orderBy:"-likes"'>
+    <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
         
     <div class="card w-75 post" >
         <span ng-if="post.username == username" id='remove' class='glyphicon glyphicon-remove' ng-click='remove(post._id)'></span>
@@ -184,7 +185,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       
       <img id='postImg' ng-src='{{post.image}}' />
     <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes,post.username)'>{{post.likes}}</span>
-    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
+    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes,post.username)'>{{post.disLikes}}</span>
       <span id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
       <span id='comment' class='glyphicon glyphicon-comment postIcons' ng-click='showComments=!showComments;getComments(post._id)'></span>
       <span  id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
@@ -192,7 +193,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <div ng-show='showComments' class='commentsBlock'>
         <hr>
         <input id='commentTextField' ng-model='comment'  placeholder='comment' type='text' class='form-control'>
-            <button ng-click='addComment(post._id, comment)' class='commentbtn'>add</button>
+            <button ng-click='addComment(post._id, comment,post.username, post.post)' class='commentbtn'>add</button>
             <p ng-repeat='c in comments track by $index'><span>{{c}}</span></p>
             
         </div>

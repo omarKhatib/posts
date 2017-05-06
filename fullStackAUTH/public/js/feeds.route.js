@@ -13,19 +13,7 @@ app.controller("feedsCtrl", function($scope, Service, privService, tokenService,
   $scope.userinput = {};
         var tags = [];
     
-//  $scope.priv = privService.getPriv();
-//  console.log($scope.priv);
-//    
-//  $scope.get = function(){
-//        console.log('getting data');
-//        Service.getPosts().then(function(response){
-//            $scope.posts = response.data;
-//            console.log($scope.posts);
-//            
-//            
-//            
-//        })
-//    }
+
     
     
     
@@ -36,7 +24,7 @@ $scope.loadConnection = function() {
     $scope.socket = Service.connect();
     Service.getNotification($scope.socket, function(data) {
           
-        if(data.to == $scope.username){
+        if(data.to == $scope.username && data.from!=$scope.username){
    
             
             $scope.notifications.push(data);
@@ -53,8 +41,8 @@ $scope.loadConnection = function() {
     $scope.getAllUsersPosts = function(){
         console.log('getting data');
         Service.getAllUsersPosts().then(function(response){
-            $scope.postss = response.data;
-            console.log($scope.postss);
+            $scope.posts = response.data;
+            console.log($scope.posts);
             
             
             
@@ -174,7 +162,7 @@ $scope.loadConnection = function() {
     $scope.like = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes+1, disLikes:disLikes};
         Service.likeDisLike(id,data).then(function(response){
-            Service.emitNotification($scope.socket,privService.getUser(),to,'like');
+            Service.emitNotification($scope.socket,privService.getUser(),to,'like',post);
             $scope.getAllUsersPosts();
             
               
@@ -187,9 +175,10 @@ $scope.loadConnection = function() {
         
     }
     
-     $scope.disLike = function(id,post,likes,disLikes){
+     $scope.disLike = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes, disLikes:disLikes+1};
         Service.likeDisLike(id,data).then(function(response){
+            Service.emitNotification($scope.socket,privService.getUser(),to,'disLike',post);
             $scope.getAllUsersPosts();
             
             
@@ -211,11 +200,15 @@ $scope.loadConnection = function() {
      }
      
      
-     $scope.addComment= function(id, comment){
+     $scope.addComment= function(id, comment,to,post){
          var data = {comment:comment};
          $scope.comment = '';
          
-         Service.addComment(id,data).then($scope.getComments(id), function(err){
+         Service.addComment(id,data).then(function(){
+             
+             $scope.getComments(id)
+         Service.emitNotification($scope.socket,privService.getUser(),to,'comment',post);
+         }, function(err){
              console.log('error'+err);
              
          });

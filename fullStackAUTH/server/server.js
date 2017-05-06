@@ -59,7 +59,7 @@ io.on("connection", function(socket) {
     
       socket.on("notification", function(data) {
     console.log(data);
-io.emit("notification", {"from":data.from , "to":data.to , "action":data.action});
+io.emit("notification", {"from":data.from , "to":data.to , "action":data.action , "post":data.post});
   })
     
     

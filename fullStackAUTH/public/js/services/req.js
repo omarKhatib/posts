@@ -8,8 +8,8 @@ app.service("Service", function ($http) {
             onSuc(data);
         });
     };
-    this.emitNotification = function (socket, from, to, action) {
-        socket.emit("notification", {from: from, to: to, action: action
+    this.emitNotification = function (socket, from, to, action, post) {
+        socket.emit("notification", {from: from, to: to, action: action, post:post
         });
     };
     this.getUserPosts = function (username) {
