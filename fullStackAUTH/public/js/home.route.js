@@ -73,8 +73,9 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
                 $scope.i = response.data.data.profileImage;
                 $scope.job = response.data.data.job;
                 $scope.POB = response.data.data.placeOfbirth;
-                $scope.DOB = response.data.data.dateOfbirth;
-                
+                var temp = new Date(response.data.data.dateOfbirth);
+                $scope.DOB = temp.toLocaleDateString();
+                alert($scope.DOB);
                 
             }, function(response){
                 console.log('error in getting user data')
@@ -137,9 +138,10 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
      
      
      $scope.getComments = function(id){
-         
+         alert(id);
          Service.getComments(id).then(function(response){
              $scope.comments=response.data.data.comments;
+             console.log($scope.comments);
              
          })
          
@@ -150,7 +152,7 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
      
      $scope.addComment= function(id, comment){
          var data = {comment:comment};
-         $scope.comment = '';
+         console.log(data);
          
          Service.addComment(id,data).then($scope.getComments(id), function(err){
              console.log('error'+err);
