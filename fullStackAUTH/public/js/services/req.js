@@ -19,7 +19,7 @@ app.service("Service", function ($http) {
         return $http.get("http://localhost:8070/posts/");
     }
     this.getComments = function (id) {
-        return $http.get("http://localhost:8070/posts/" + id);
+        return $http.get("http://localhost:8070/posts/comments/" + id);
     }
     this.addPost = function (data) {
         return $http.post("http://localhost:8070/posts/", data)

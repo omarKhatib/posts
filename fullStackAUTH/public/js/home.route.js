@@ -118,9 +118,7 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
         var data = {post:post, likes:likes+1, disLikes:disLikes};
         Service.likeDisLike(id,data).then(function(response){
             $scope.get();
-            
-            
-            
+
         })
         
     }

@@ -84,7 +84,7 @@ apiRouter.get("/:username", function (req, res) {
 
 
 
-apiRouter.get("/:id", function (req, res) {
+apiRouter.get("/comments/:id", function (req, res) {
     data.findOne({
         _id: req.params.id
     }, function (err, data) {
