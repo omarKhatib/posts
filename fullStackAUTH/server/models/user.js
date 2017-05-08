@@ -44,7 +44,9 @@ var userSchema = new Schema({
     followers:{
         type:[String]
     
-}
+},
+    
+    notifications: []
     
     
 });

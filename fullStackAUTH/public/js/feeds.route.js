@@ -31,11 +31,44 @@ $scope.loadConnection = function() {
             $scope.notificationNum = $scope.notifications.length;
             console.log($scope.notifications);
             console.log($scope.notificationNum);
+            $scope.sendNotification(data);
             $scope.$apply();
 
         }
     });
   };
+    
+        $scope.getOldNotifications = function(){
+        authService.getNotifications(privService.getUser()).then(function(response){
+            
+        //$scope.oldNotifications = response.data.data;
+      console.log(response.data.data);
+
+            
+            
+        });
+        
+        
+    }
+        
+            $scope.sendNotification = function(n){
+        alert("j");
+                console.log(n);
+        
+        authService.postNotification($scope.username,n).then(function(response){
+            
+            console.log(response);
+
+
+            
+        },function(err){
+            console.log('err')
+        })
+        
+    }
+    
+    
+    
   
   
     $scope.getAllUsersPosts = function(){
