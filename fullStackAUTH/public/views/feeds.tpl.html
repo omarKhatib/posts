@@ -11,7 +11,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <div class="w3-theme-l5">
 
 <!-- Navbar -->
-<div class="w3-top" ng-init='getAllUsersPosts();loadConnection();'>
+<div class="w3-top" ng-init='getAllUsersPosts();loadConnection()'>
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
@@ -178,8 +178,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
         
   <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
-
-      <img id='postProfileImage' ng-src="{{i}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
+<!--{{getProfilesImages(post.username)}}-->
+      <img id='postProfileImage' ng-src="{{post.profileImage}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
       <h4 ng-click='get(post.username)' id='postUsername' style='float:left'><b>{{post.username}}</b></h4><br>
       <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       

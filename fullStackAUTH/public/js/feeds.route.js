@@ -31,55 +31,28 @@ $scope.loadConnection = function() {
             $scope.notificationNum = $scope.notifications.length;
             console.log($scope.notifications);
             console.log($scope.notificationNum);
-            $scope.sendNotification(data);
             $scope.$apply();
 
         }
     });
   };
-    
-        $scope.getOldNotifications = function(){
-        authService.getNotifications(privService.getUser()).then(function(response){
-            
-        //$scope.oldNotifications = response.data.data;
-      console.log(response.data.data);
-
-            
-            
-        });
-        
-        
-    }
-        
-            $scope.sendNotification = function(n){
-        alert("j");
-                console.log(n);
-        
-        authService.postNotification($scope.username,n).then(function(response){
-            
-            console.log(response);
-
-
-            
-        },function(err){
-            console.log('err')
-        })
-        
-    }
-    
-    
-    
   
   
     $scope.getAllUsersPosts = function(){
         console.log('getting data');
         Service.getAllUsersPosts().then(function(response){
             $scope.posts = response.data;
-            console.log($scope.posts);
+            console.log("Here in code")
+            console.log($scope.posts.data);
+            $scope.posts.data.map(function(item){
+                console.log("While in here");
+                $scope.getProfilesImages(item);
+            });
             
             
             
         })
+          
     }
     
     
@@ -148,14 +121,13 @@ $scope.loadConnection = function() {
 //        }
     
     
-          $scope.getProfilesImages =function(user){
+          $scope.getProfilesImages = function(user){
+            console.log("Before hand");
               console.log(user);
-           
-            authService.getProfileImage(user).then(function(response){
-               $scope.i = response.data.data.profileImage;
-                console.log($scope.i);
-                
-                
+            authService.getProfileImage(user.username).then(function(response){
+                console.log("Really here");
+                console.log(response.data);
+               user.profileImage = response.data.data.profileImage;
             }, function(response){
                 console.log('error in getting user data')
                 
