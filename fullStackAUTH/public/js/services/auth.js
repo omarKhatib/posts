@@ -29,16 +29,5 @@ app.service("authService", function($http) {
           return $http.post("http://localhost:8070/auth/"+username+'/',data);
       }
           
-          
-              this.getNotifications = function(username){
 
-        return $http.get("http://localhost:8070/auth/notification/"+username);
-    }
-    
-    
-    
-    
-  this.postNotification = function(username,data) {
-    return $http.post("http://localhost:8070/auth/notification/"+username, data);
-  };
 });

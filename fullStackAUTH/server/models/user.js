@@ -45,8 +45,7 @@ var userSchema = new Schema({
         type:[String]
     
 },
-    
-    notifications: []
+
     
     
 });

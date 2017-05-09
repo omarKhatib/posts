@@ -38,13 +38,16 @@ app.set("view engine", "ejs");
 var apiRouter = require("./routes/api.js");
 var fileRouter = require("./routes/file.js");
 var authRouter = require("./routes/auth.js");
-var chattingRouter = require("./routes/chatting.js")
+var chattingRouter = require("./routes/chatting.js");
+var notificationsRouter = require("./routes/notifications.js");
+
 
 app.use("/posts", expressJwt({"secret": config.secret}));
 
 app.use("/auth", authRouter);
 app.use("/posts", apiRouter);
 app.use('/chatting', chattingRouter);
+app.use('/notifications', notificationsRouter);
 app.use("/", fileRouter);
 
 
