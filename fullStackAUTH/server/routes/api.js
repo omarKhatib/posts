@@ -129,7 +129,7 @@ apiRouter.post("/", function (req, res) {
 });
 
 
-apiRouter.post("/:id", function (req, res) { //to add comment
+apiRouter.post("/:id", function (req, res) { 
     var comment = req.body.comment;
     data.findOne({
         _id: req.params.id
@@ -161,8 +161,110 @@ apiRouter.post("/:id", function (req, res) { //to add comment
 
 
     })
+});
+
+apiRouter.post("/addLiker/:id", function (req, res) {
+    
+    var liker = req.body.liker;
+    
+    data.findOne({
+        _id: req.params.id
+    }, function (err, d) {
+        if (err) {
+            res.status(500).send({
+                message: 'error'
+            });
+
+        }
+        else if(d.likers.indexOf(liker)!=-1){
+             res.status(500).send({
+                        message: 'error cannot like twice!!'
+                    });
+            
+        }
+        
+              else if(d.disLikers.indexOf(liker)!=-1){
+             res.status(500).send({
+                        message: 'error you cannt like a post did you dislike it before!!'
+                    });
+            
+        }
+        
+        else {
+            d.likers.push(liker);
+            d.save(function (err, data) {
+                if (err) {
+                    res.status(500).send({
+                        message: 'error'
+                    });
 
 
+                } else {
+                    console.log('llllllllllllllllllllllllllllllllllllllll');
+                    console.log(d);
+                    res.status(200).send({
+                        'data': data
+                    });
+                }
+
+            });
+
+
+        }
+
+
+    })
+});
+
+
+apiRouter.post("/addDisLiker/:id", function (req, res) { 
+    var disLiker = req.body.disLiker;
+    data.findOne({
+        _id: req.params.id
+    }, function (err, d) {
+        if (err) {
+            res.status(500).send({
+                message: 'error'
+            });
+
+        } 
+        
+           else if(d.disLikers.indexOf(disLiker)!=-1){
+             res.status(500).send({
+                        message: 'error cannot disLike twice!!'
+                    });
+            
+        }
+        
+        else if(d.likers.indexOf(disLiker)!=-1){
+             res.status(500).send({
+                        message: 'error you cannt dislike a post did you like it before!!'
+                    });
+            
+        }
+        
+        else {
+            d.disLikers.push(disLiker);
+            d.save(function (err, data) {
+                if (err) {
+                    res.status(500).send({
+                        message: 'error'
+                    });
+
+
+                } else {
+                    res.status(200).send({
+                        'data': data
+                    });
+                }
+
+            });
+
+
+        }
+
+
+    })
 });
 
 apiRouter.put("/:id", function (req, res) {

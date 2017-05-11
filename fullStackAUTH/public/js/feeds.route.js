@@ -134,23 +134,26 @@ $scope.loadConnection = function() {
     
     $scope.username = privService.getUser(); //get username for each post
     
-//      $scope.getProfileImage  =function(){
-//            alert('getting user data');
-//            authService.getProfileImage($scope.username).then(function(response){
-//                console.log(response.data.data);
-//                $scope.i = response.data.data.profileImage;
-//                
-//                
-//            }, function(response){
-//                console.log('error in getting user data')
-//                
-//            })
-//            
-//            
-//            
-//            
-//            
-//        }
+      $scope.getProfileImage  =function(){       //get profile image , dop ,pob and job
+
+            authService.getProfileImage($scope.username).then(function(response){
+                console.log(response.data.data);
+                $scope.i = response.data.data.profileImage;
+                $scope.job = response.data.data.job;
+                $scope.POB = response.data.data.placeOfbirth;
+                var temp = new Date(response.data.data.dateOfbirth);
+                $scope.DOB = temp.toLocaleDateString();
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+            
+            
+            
+            
+        }
     
     
           $scope.getProfilesImages = function(user){
@@ -196,7 +199,9 @@ $scope.loadConnection = function() {
       
     $scope.like = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes+1, disLikes:disLikes};
-        Service.likeDisLike(id,data).then(function(response){
+        Service.addLiker(id,{liker:$scope.username}).then(function(response){
+            
+            Service.likeDisLike(id,data);
             notificationsService.postNotification({from:privService.getUser(),to:to,action:'like',post:post}).then(function(res){
                 
                 Service.emitNotification($scope.socket,privService.getUser(),to,'like',post);
@@ -218,7 +223,9 @@ $scope.loadConnection = function() {
     
      $scope.disLike = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes, disLikes:disLikes+1};
-        Service.likeDisLike(id,data).then(function(response){
+        Service.addDisLiker(id,{"disLiker":$scope.username}).then(function(response){
+           
+            Service.likeDisLike(id,data);
             Service.emitNotification($scope.socket,privService.getUser(),to,'disLike',post);
             notificationsService.postNotification({from:privService.getUser(),to:to,action:'disLike',post:post});
             $scope.getAllUsersPosts();
