@@ -202,14 +202,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 </div>
     </div>
 -->
-        
-        <div class='row'>
-            <div ng-repeat='img in images' class='col-md-4'>
-                <img src='{{img}}' style='width: 100%;'>
+
+        <div class='row' style='display:inline-block;margin-left:20%;margin-right:20%;width:60%'>
+            <div ng-repeat='img in images' class='col-md-12' style='margin:5% auto;border:1px #0099cc solid'>
+                <span id='remove' class='glyphicon glyphicon-remove' ng-click='removeImage(img)'></span>
+                <img src='{{img}}' style='width: 90%;heigh:auto'>
             </div>
          
             
         </div>
+
 
     </div>
     

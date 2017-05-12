@@ -134,12 +134,16 @@ $scope.addImage = function(){
 
     
 
-  $scope.remove = function(id){
-        Service.deleteData(id).then(function(response){
-
-            $scope.get();
+  $scope.removeImage = function(image){
+  
+var data = {image:image};
+        authService.removeImage($scope.username,data).then(function(response){
+console.log(response);
+            $scope.getImages();
             
             
+        },function(error){
+            console.log(error);
         });
         
     }

@@ -24,4 +24,10 @@ app.service("authService", function ($http) {
     this.getPrivateImages = function (username) {
         return $http.get("http://localhost:8070/auth/" + username);
     }
+    this.removeImage = function (username,data) {
+              
+        return $http.put("http://localhost:8070/auth/removeImage/"+username,data);
+ 
+    }
+    
 });

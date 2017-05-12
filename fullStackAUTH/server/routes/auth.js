@@ -183,6 +183,54 @@ authRouter.post("/addImage/:username", function (req, res) {   //add private ima
 
 
 
+authRouter.put("/removeImage/:username/", function (req, res) {
+
+    User.findOne({
+        username: req.params.username
+    }, function (err, data) {
+        if (err) {
+            res.status(500).send({
+                message: 'internal server error'
+            });
+
+        } else {
+            var i = data.privateImages.indexOf(req.body.image);
+            if(i > -1){
+                data.privateImages.splice(i,1);
+                data.save(function(err, data){
+                    if(err){
+                        res.status(500).send({
+                message: 'internal server error'
+            });
+                        
+                    }
+                    else{
+                        res.status(200).send({
+                data: data
+            });
+                        
+                    }
+                }
+                         
+                         
+                         );
+                
+            }
+
+            
+
+        }
+
+
+
+
+
+    })
+
+});
+
+
+
 
 
 
