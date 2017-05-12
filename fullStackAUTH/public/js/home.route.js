@@ -1,4 +1,4 @@
-var app = angular.module("app.home", ["ngRoute", "requestsModule", "privModule", "tokenModule", "authModule"]);
+var app = angular.module("app.home", ["ngRoute", "requestsModule", "privModule", "tokenModule", "authModule","notificationsModule"]);
 
 app.config(function($routeProvider) {
   $routeProvider.when("/home", {
@@ -7,13 +7,71 @@ app.config(function($routeProvider) {
   });
 });
 
-app.controller("homeCtrl", function($scope, Service, privService, tokenService,authService, $location) {
+app.controller("homeCtrl", function($scope, Service, privService, tokenService,authService,notificationsService, $location) {
   $scope.todoItems = [];
   $scope.userinput = {};
         var tags = [];
     
 //  $scope.priv = privService.getPriv();
 //  console.log($scope.priv);
+        $scope.notifications =[];
+    
+$scope.loadConnection = function() {
+    
+  
+    $scope.socket = Service.connect();
+    Service.getNotification($scope.socket, function(data) {
+          
+        if(data.to == $scope.username && data.from!=$scope.username){
+   
+            
+            $scope.notifications.push(data);
+            
+            $scope.notificationNum = $scope.notifications.length;
+            
+            console.log($scope.notifications);
+            console.log($scope.notificationNum);
+            $scope.$apply();
+
+        }
+    });
+  };
+    
+    
+    
+    $scope.getOldNotifications = function(){
+        notificationsService.getNotifications($scope.username).then(function(response){
+            $scope.oldNotifications = response.data.data;
+            console.log($scope.oldNotifications)
+            $scope.oldNotificationsNum = $scope.oldNotifications.length;
+        },function(err){
+            console.log('error')
+        })
+            
+            
+        }
+
+          $scope.removeNotification = function(id){
+        notificationsService.removeNotification(id).then(function(response){
+            $scope.oldNotifications = response.data.data;
+            $scope.oldNotificationsNum = $scope.oldNotificationsNum-1;
+            $scope.getOldNotifications();
+        },function(err){
+            console.log('error')
+        })
+            
+            
+        } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
   $scope.get = function(){
         console.log('getting data');

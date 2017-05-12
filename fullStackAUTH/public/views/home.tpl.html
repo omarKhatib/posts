@@ -68,7 +68,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <div class="w3-theme-l5">
 
 <!-- Navbar -->
-<div class="w3-top" ng-init='get();getProfileImage()'>
+<div class="w3-top" ng-init='get();getProfileImage();loadConnection();getOldNotifications()'>
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
@@ -76,12 +76,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a href="#home" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   <a href="#messenger" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{oldNotificationsNum+notificationNum}}</span></button>     
+    <div  class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+                <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in notifications'>{{notification.from}} {{notification.action}}s your post : {{notification.post}} <hr></span>
+        <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in oldNotifications'>{{notification.from}} {{notification.action}}s your post : {{notification.post}} <hr></span>
+
+
     </div>
+      
   </div>
 <!--  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>-->
   
