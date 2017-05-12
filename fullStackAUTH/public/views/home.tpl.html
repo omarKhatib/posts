@@ -267,7 +267,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <hr>
         <input id='commentTextField' ng-model='comment'  placeholder='comment' type='text' class='form-control'>
             <button ng-click='addComment(post._id, comment)' class='commentbtn'>add</button>
-            <p ng-repeat='c in comments track by $index'><span>{{c}}</span></p>
+            <p ng-repeat='c in comments track by $index'>
+                <span>{{c}}</span>
+
+            
+            </p>
             
         </div>
 </div>

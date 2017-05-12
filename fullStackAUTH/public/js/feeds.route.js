@@ -202,13 +202,13 @@ $scope.loadConnection = function() {
         Service.addLiker(id,{liker:$scope.username}).then(function(response){
             
             Service.likeDisLike(id,data);
-            notificationsService.postNotification({from:privService.getUser(),to:to,action:'like',post:post}).then(function(res){
+            notificationsService.postNotification({from:privService.getUser(),to:to,action:'like',post:post});
                 
                 Service.emitNotification($scope.socket,privService.getUser(),to,'like',post);
             
             $scope.getAllUsersPosts();
                 
-            })
+    
             
             
               
