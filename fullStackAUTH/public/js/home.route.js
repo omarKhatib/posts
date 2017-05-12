@@ -217,10 +217,10 @@ $scope.loadConnection = function() {
      
      
      $scope.getComments = function(id){
-         alert(id);
+
          Service.getComments(id).then(function(response){
              $scope.comments=response.data.data.comments;
-             console.log($scope.comments);
+
              
          })
          
@@ -231,9 +231,12 @@ $scope.loadConnection = function() {
      
      $scope.addComment= function(id, comment){
          var data = {comment:comment};
-         console.log(data);
+
          
-         Service.addComment(id,data).then($scope.getComments(id), function(err){
+         Service.addComment(id,data).then(function(response){
+             
+             $scope.getComments(id);
+         }, function(err){
              console.log('error'+err);
              
          });
