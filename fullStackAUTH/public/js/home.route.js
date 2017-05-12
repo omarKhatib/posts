@@ -172,19 +172,42 @@ $scope.loadConnection = function() {
     }
   
       
-    $scope.like = function(id,post,likes,disLikes){
+    $scope.like = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes+1, disLikes:disLikes};
-        Service.likeDisLike(id,data).then(function(response){
-            $scope.get();
+        Service.addLiker(id,{liker:$scope.username}).then(function(response){
+            
+            Service.likeDisLike(id,data).then(function(response){
+                $scope.get();
+            });
+//            notificationsService.postNotification({from:privService.getUser(),to:to,action:'like',post:post}).then(function(res){
+                
+//                Service.emitNotification($scope.socket,privService.getUser(),to,'like',post);
+            
+            
+                
+//            })
+            
+            
+              
 
+  
+            
+            
+            
         })
         
     }
     
-     $scope.disLike = function(id,post,likes,disLikes){
+     $scope.disLike = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes, disLikes:disLikes+1};
-        Service.likeDisLike(id,data).then(function(response){
-            $scope.get();
+        Service.addDisLiker(id,{"disLiker":$scope.username}).then(function(response){
+           
+            Service.likeDisLike(id,data).then(function(response){
+                 $scope.get();
+            });
+//            Service.emitNotification($scope.socket,privService.getUser(),to,'disLike',post);
+//            notificationsService.postNotification({from:privService.getUser(),to:to,action:'disLike',post:post});
+           
             
             
             
