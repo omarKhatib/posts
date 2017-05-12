@@ -61,19 +61,6 @@ authRouter.get("/:username", function (req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 authRouter.post("/signup", function(req, res) {
   //If the username is already taken
   //If not then add the user
@@ -151,6 +138,51 @@ authRouter.put("/:username", function (req, res) {  //update personal info
 
 
 });
+
+
+
+
+
+
+authRouter.post("/addImage/:username", function (req, res) {   //add private image
+    //var image = req.body.image;
+    User.findOne({
+        username: req.params.username
+    }, function (err, d) {
+        if (err) {
+           
+            res.status(500).send({
+                message: 'error'
+            });
+
+        } else {
+            d.privateImages.push(req.body.image);
+            d.save(function (err, data) {
+                if (err) {
+                     
+                    res.status(500).send({
+                        message: 'error'
+                    });
+
+
+                } else {
+                    console.log(d);
+                    res.status(200).send({
+                        'data': data
+                    });
+                }
+
+            });
+
+
+        }
+
+
+    })
+});
+
+
+
 
 
 

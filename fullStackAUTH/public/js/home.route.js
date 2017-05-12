@@ -125,7 +125,7 @@ $scope.loadConnection = function() {
     
     
       $scope.getProfileImage  =function(){       //get profile image , dop ,pob and job
-            alert('getting user data');
+            
             authService.getProfileImage($scope.username).then(function(response){
                 console.log(response.data.data);
                 $scope.i = response.data.data.profileImage;
@@ -133,7 +133,7 @@ $scope.loadConnection = function() {
                 $scope.POB = response.data.data.placeOfbirth;
                 var temp = new Date(response.data.data.dateOfbirth);
                 $scope.DOB = temp.toLocaleDateString();
-                alert($scope.DOB);
+                
                 
             }, function(response){
                 console.log('error in getting user data')

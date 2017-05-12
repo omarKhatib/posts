@@ -45,6 +45,9 @@ var userSchema = new Schema({
         type:[String]
     
 },
+    privateImages:{
+        type:[String]
+    }
 
     
     
