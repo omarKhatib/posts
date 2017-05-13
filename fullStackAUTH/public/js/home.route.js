@@ -16,6 +16,11 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
 //  console.log($scope.priv);
         $scope.notifications =[];
     
+    
+               $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+    
 $scope.loadConnection = function() {
     
   
@@ -254,6 +259,10 @@ $scope.loadConnection = function() {
          
          
      }
+     
+     
+     
+   
      
        $scope.signout = function() {
            

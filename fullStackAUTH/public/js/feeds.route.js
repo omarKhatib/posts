@@ -7,6 +7,10 @@ app.config(function($routeProvider) {
   });
 });
 
+
+
+
+
 app.controller("feedsCtrl", function($scope, Service, privService, tokenService,authService,notificationsService, $location) {
     
       $scope.todoItems = [];
@@ -15,7 +19,9 @@ app.controller("feedsCtrl", function($scope, Service, privService, tokenService,
     
 
     
-    
+           $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
     
     $scope.notifications =[];
     
@@ -267,6 +273,8 @@ $scope.loadConnection = function() {
          
      }
      
+
+     
        $scope.signout = function() {
            
      tokenService.removeToken();
@@ -274,6 +282,8 @@ $scope.loadConnection = function() {
       $location.path("/signin");
 
   }
+       
+
     
 
   

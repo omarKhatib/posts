@@ -257,8 +257,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       
       <img id='postImg' ng-src='{{post.image}}' />
-    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes)'>{{post.likes}}</span>
-    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)'>{{post.disLikes}}</span>
+    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes)' data-toggle="tooltip"  title='{{post.likers.toString()}}'>{{post.likes}}</span>
+    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)' data-toggle="tooltip"  title='{{post.disLikers.toString()}}'>{{post.disLikes}}</span>
       <span id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
       <span id='comment' class='glyphicon glyphicon-comment postIcons' ng-click='showComments=!showComments;getComments(post._id)'></span>
       <span id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
