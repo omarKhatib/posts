@@ -71,6 +71,14 @@ $scope.loadConnection = function() {
     
     
     
+          $scope.getUsers = function(){
+              authService.getUsers().then(function(response){
+                  console.log(response.data);
+                  
+              },function(error){
+                  console.log('error')
+              })
+          }
     
     
     
