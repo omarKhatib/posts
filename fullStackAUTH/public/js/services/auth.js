@@ -30,4 +30,8 @@ app.service("authService", function ($http) {
  
     }
     
+     this.addFollower = function (username, data) {
+        return $http.post("http://localhost:8070/auth/addfollower/" + username+'/', data);
+    }
+    
 });

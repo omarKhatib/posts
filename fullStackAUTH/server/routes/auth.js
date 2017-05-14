@@ -232,6 +232,98 @@ authRouter.put("/removeImage/:username/", function (req, res) {
 
 
 
+authRouter.post("/addfollower/:username", function (req, res) {   //add follower
+    User.findOne({
+        username: req.params.username
+    }, function (err, d) {
+        if (err) {
+           
+            res.status(500).send({
+                message: 'error'
+            });
+
+        } else {
+            d.following.push(req.body.follower);
+            d.save(function (err, data) {
+                if (err) {
+                     
+                    res.status(500).send({
+                        message: 'error'
+                    });
+
+
+                } else {
+//                    console.log(d);
+//                    res.status(200).send({
+//                        'data': data
+//                    });
+                    
+                            User.findOne({
+        username: req.body.follower
+    }, function (err, d) {
+        if (err) {
+           
+            res.status(500).send({
+                message: 'error'
+            });
+
+        } else {
+            d.followers.push(req.params.username);
+            d.save(function (err, data) {
+                if (err) {
+                     
+                    res.status(500).send({
+                        message: 'error'
+                    });
+
+
+                } else {
+     
+                    res.status(200).send({
+                        'data': data
+                    });
+                }
+
+            });
+
+
+        }
+
+
+    })
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+
+            });
+
+
+        }
+
+
+    })
+    
+
+});
+
+
+
+
 
 
 
