@@ -181,7 +181,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 -->
     <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
         
-    <div class="card w-75 post" >
+    <div ng-if='following.indexOf(post.username)!=-1' class="card w-75 post" >
         <span ng-if="post.username == username" id='remove' class='glyphicon glyphicon-remove' ng-click='remove(post._id)'></span>
         
 

@@ -147,6 +147,8 @@ $scope.loadConnection = function() {
                 $scope.i = response.data.data.profileImage;
                 $scope.job = response.data.data.job;
                 $scope.POB = response.data.data.placeOfbirth;
+                $scope.followers = response.data.data.followers;
+             $scope.following = response.data.data.following;
                 var temp = new Date(response.data.data.dateOfbirth);
                 $scope.DOB = temp.toLocaleDateString();
                 
