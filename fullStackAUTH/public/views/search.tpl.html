@@ -172,6 +172,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         
         <div style='margin-top: 44px;' ng-repeat='x in allUsers | filter:keySearch'>
             <p ng-if='x.username!=username'><img style='height:50px;width:50px;' src='{{x.profileImage}}'><span>{{x.username}}<span><button ng-click='follow(x.username)'>follow</button></p>
+                <hr>
         </div>
         
 

@@ -12,6 +12,7 @@ app.controller("homeCtrl", function($scope, Service, privService, tokenService,a
   $scope.userinput = {};
         var tags = [];
     
+    
 //  $scope.priv = privService.getPriv();
 //  console.log($scope.priv);
         $scope.notifications =[];
@@ -144,6 +145,9 @@ $scope.loadConnection = function() {
                 $scope.i = response.data.data.profileImage;
                 $scope.job = response.data.data.job;
                 $scope.POB = response.data.data.placeOfbirth;
+                 $scope.followers = response.data.data.followers;
+             $scope.following = response.data.data.following;
+                console.log($scope.following);
                 var temp = new Date(response.data.data.dateOfbirth);
                 $scope.DOB = temp.toLocaleDateString();
                 
@@ -258,18 +262,69 @@ $scope.loadConnection = function() {
          
      }
      
+
      
-     $scope.follow = function(u){
+     
+     
+               $scope.getUsers = function(){
+              authService.getUsers().then(function(response){
+                  $scope.allUsers = response.data.data;
+                  
+              },function(error){
+                  console.log('error')
+              })
+          }
+               
+
+    
+
          
-         var follower = {follower:privService.getUser()}
-         console.log(u);
-         console.log(follower.follower);
-         
-         
+        
+
+     
+     $scope.follow = function(user){
+         authService.addFollower($scope.username,{follower:user}).then(function(response){
+             
+         }, function(error){
+             console.log(error);
+         })
+     
      }
      
+           $scope.getFollowing  =function(){      
+            
+            authService.getProfileImage($scope.username).then(function(response){
+
+
+             $scope.following = response.data.data.following;
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+
+        }
      
+           $scope.getFollower  =function(){      
+            
+            authService.getProfileImage($scope.username).then(function(response){
+
+
+                 $scope.followers = response.data.data.followers;
+
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+
+        }
+
+
      
+   
    
      
        $scope.signout = function() {
