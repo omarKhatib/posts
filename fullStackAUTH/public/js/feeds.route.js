@@ -275,6 +275,71 @@ $scope.loadConnection = function() {
          
      }
      
+     
+     
+     
+     
+     
+     
+                    $scope.getUsers = function(){
+              authService.getUsers().then(function(response){
+                  $scope.allUsers = response.data.data;
+                  
+              },function(error){
+                  console.log('error')
+              })
+          }
+               
+
+    
+
+         
+        
+
+     
+     $scope.follow = function(user){
+         authService.addFollower($scope.username,{follower:user}).then(function(response){
+             
+         }, function(error){
+             console.log(error);
+         })
+     
+     }
+     
+           $scope.getFollowing  =function(){      
+            
+            authService.getProfileImage($scope.username).then(function(response){
+
+
+             $scope.following = response.data.data.following;
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+
+        }
+     
+           $scope.getFollower  =function(){      
+            
+            authService.getProfileImage($scope.username).then(function(response){
+
+
+                 $scope.followers = response.data.data.followers;
+
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+
+        }
+     
+     
+     
+     
 
      
        $scope.signout = function() {

@@ -91,22 +91,43 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       
       <!-- Interests --> 
       <div class="w3-card-2 w3-round w3-white w3-hide-small">
-       
         <div class="w3-container">
-          <p>Interests</p>
-          <p>
-            <span class="w3-tag w3-small w3-theme-d5">News</span>
-            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
-            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-            <span class="w3-tag w3-small w3-theme">Games</span>
-            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
-            <span class="w3-tag w3-small w3-theme-l2">Food</span>
-            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-            <span class="w3-tag w3-small w3-theme-l4">Art</span>
-            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
-          </p>
+    <ul class="nav nav-tabs">
+    <li ><a data-toggle="tab" data-target="#followers">followers</a></li>
+    <li><a data-toggle="tab" data-target="#following">following</a></li>
+    <li><a data-toggle="tab" data-target="#suggessions">suggessions</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div ng-init='getFollowers()'  id="followers" class="tab-pane fade in active">
+      <h3>followers</h3>
+        <hr>
+        <div style='margin-top: 44px;' ng-repeat='t in followers'>
+            <p ><img style='height:50px;width:50px;' ><span>{{t}}<span></p>
+                <hr>
+        </div>
+    </div>
+    <div ng-init='getFollowing()'  id="following" class="tab-pane fade">
+      <h3>following</h3>
+        <hr>
+         <div  ng-repeat='f in following'>
+             {{f}}
+                <hr>
+        </div>
+    </div>
+    <div ng-init='getUsers()' id="suggessions" class="tab-pane fade">
+      <h3>suggessions</h3>
+        <hr>
+             <input ng-model='keySearch'  class="form-control w3-bar-item" type='text' placeholder="user search" style='margin-left: 20%;
+    margin-top: 7px;
+    width: 80%;border-radius: 10px;'>
+          <div style='margin-top: 44px; width:50%;margin-left:auto;margin-right:auto' ng-repeat='x in allUsers | filter:keySearch'>
+            <p ng-if='x.username!=username'><img style='height:50px;width:50px;' src='{{x.profileImage}}'><span>{{x.username}}<span><button ng-click='follow(x.username)'>follow</button></p>
+                <hr>
+        </div>
+    </div>
+
+  </div>
         </div>
       </div>
       <br>
@@ -143,6 +164,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <!--          </div>-->
         </div>
       </div>
+        
+        
+        
+ 
 
     <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
         
