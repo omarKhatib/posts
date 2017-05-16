@@ -138,7 +138,7 @@ $scope.loadConnection = function() {
         
     }
     
-    $scope.username = privService.getUser(); //get username for each post
+    $scope.username = privService.getUser(); 
     
       $scope.getProfileImage  =function(){       //get profile image , dop ,pob and job
 
