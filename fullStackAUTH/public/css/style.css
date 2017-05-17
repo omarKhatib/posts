@@ -405,3 +405,11 @@ h2{
     
 }
 
+.followTabs:hover{
+    cursor: pointer;
+}
+.tab-content{
+    overflow:scroll;
+    height:450px;
+}
+

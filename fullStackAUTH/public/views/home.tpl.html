@@ -111,23 +111,25 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card-2 w3-round w3-white w3-hide-small">
         <div class="w3-container">
     <ul class="nav nav-tabs">
-    <li ><a data-toggle="tab" data-target="#followers">followers</a></li>
-    <li><a data-toggle="tab" data-target="#following">following</a></li>
-    <li><a data-toggle="tab" data-target="#suggessions">suggessions</a></li>
+    <li class='followTabs' ><a data-toggle="tab" data-target="#followers">followers</a></li>
+    <li class='followTabs'><a data-toggle="tab" data-target="#following">following</a></li>
+    <li class='followTabs'><a data-toggle="tab" data-target="#suggessions">suggessions</a></li>
   </ul>
 
   <div class="tab-content">
     <div ng-init='getFollowers()'  id="followers" class="tab-pane fade in active">
       <h3>followers</h3>
         <hr>
+        <h3 ng-if='followers.length==0' style='color:#c1c5c5'>you dont have any follower yet</h3>
         <div style='margin-top: 44px;' ng-repeat='t in followers'>
-            <p ><img  style='height:50px;width:50px;border-radius:100px' ><span>{{t}}</span></p>
+            <p ><span>{{t}}</span></p>
                 <hr>
         </div>
     </div>
     <div ng-init='getFollowing()'  id="following" class="tab-pane fade">
       <h3>following</h3>
         <hr>
+        <h3 ng-if='following.length==0' style='color:#c1c5c5'>you did'nt follow any one yet</h3>
          <div  ng-repeat='f in following'>
              {{f}}
                 <hr>
@@ -139,8 +141,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
              <input ng-model='keySearch'  class="form-control w3-bar-item" type='text' placeholder="user search" style='margin-left: 20%;
     margin-top: 7px;
     width: 80%;border-radius: 10px;'>
-          <div style='margin-top: 44px; width:50%;margin-left:auto;margin-right:auto' ng-repeat='x in allUsers | filter:keySearch'>
-              <p ng-if='x.username!=username && following.indexOf(x.username)==-1'><img style='height:50px;width:50px;border-radius:100px' src='{{x.profileImage}}'><span>{{x.username}}</span><button ng-click='follow(x.username)'>follow</button></p>
+          <div style='margin-top: 44px; width:100%;margin-left:auto;margin-right:auto' ng-repeat='x in allUsers | filter:keySearch'  ng-if='x.username!=username && following.indexOf(x.username)==-1'>
+              <img style='height:50px;width:50px;border-radius:100px;margin-right:10px' src='{{x.profileImage}}'><span style='margin-right:10px'>{{x.username}}</span><button ng-click='follow(x.username)' class='btn' style='margin-right:10px'>follow</button>
                 <hr>
         </div>
     </div>

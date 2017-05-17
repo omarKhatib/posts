@@ -291,15 +291,20 @@ $scope.loadConnection = function() {
           }
                
 
-    
-
-         
+          
         
 
      
      $scope.follow = function(user){
          authService.addFollower($scope.username,{follower:user}).then(function(response){
+             Service.emitNotification($scope.socket,privService.getUser(),user,'follow');
+            notificationsService.postNotification({from:privService.getUser(),to:user,action:'follow'});
              
+             
+             
+             
+             
+             $scope.getFollowing();
          }, function(error){
              console.log(error);
          })
