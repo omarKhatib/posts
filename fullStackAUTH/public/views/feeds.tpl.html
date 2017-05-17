@@ -10,49 +10,61 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 </style>
 <div class="w3-theme-l5">
 
+
 <!-- Navbar -->
 <div class="w3-top" ng-init='getProfileImage();getAllUsersPosts();loadConnection();getOldNotifications()'>
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
-  <a href="#feeds" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
-  <a href="#home" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-  <a href="#messenger" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <a href="#feeds" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="feeds"><i class="fa fa-globe"></i></a>
+  <a href="#home" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="home"><i class="fa fa-user"></i></a>
+
+  <a href="#messenger" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="messenger"><i class="fa fa-envelope"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{oldNotificationsNum+notificationNum}}</span></button>     
     <div  class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
                 <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in notifications'>{{notification.from}} {{notification.action}}s your post : {{notification.post}} <hr></span>
         <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in oldNotifications'>{{notification.from}} {{notification.action}}s your post : {{notification.post}} <hr></span>
-
+        
+        
 
     </div>
       
   </div>
+     
 
-     <div class="w3-dropdown-hover w3-right w3-padding-large">
-<img ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
+     
+     
+  
+  
+<div class="w3-dropdown-hover w3-right w3-padding-large">
+    
+<img  ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="profile image">
   <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
     <a href="#settings" class="w3-bar-item w3-button">settings</a>
     <a href="#" class="w3-bar-item w3-button" ng-click='signout()'>logout</a>
     
   </div>
 </div>
+  
+
+  
+  
+  
  </div>
 </div>
 
 <!-- Navbar on small screens -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+
   <a href="#home" class="w3-bar-item w3-button w3-padding-large">home</a>
   
    <a href="#messenger" class="w3-bar-item w3-button w3-padding-large">messenger</a>
-   <a href="#home" class="w3-bar-item w3-button w3-padding-large">home</a>
    
-
+   <a href="#home" class="w3-bar-item w3-button w3-padding-large">home</a>
   
   <a href="#settings" class="w3-bar-item w3-button w3-padding-large">settings</a>
 </div>
-
-<!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
   <!-- The Grid -->
   <div class="w3-row">
@@ -61,16 +73,21 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card-2 w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">{{username}}</h4>
-         <p class="w3-center"><img ng-src='{{i}}'  style="height:50%;width:100%" alt="Avatar"></p>
+         <h4 class="w3-center userName">{{username}}</h4>
+         <p class="w3-center"><img id="userImage" ng-src='{{i}}' alt="profile image">
+             
+         </p>
+
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {{job}}</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{POB}}</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{DOB}}</p>
+         <center>
+         <p class="userData" ><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {{job}}</p>
+         <p class="userData"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{POB}} </p>
+         <p class="userData"><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{DOB}}</p>
+         </center>
         </div>
       </div>
       <br>
-      
+      <!-- Accordion -->
       <!-- Accordion -->
       <div class="w3-card-2 w3-round">
         <div class="w3-white">
@@ -78,7 +95,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
           
  
-          <a href='#images' class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</a>
+              <a href='#images' class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-file-image-o fa-fw w3-margin-right"></i> Photos</a>
           <div id="Demo3" class="w3-hide w3-container">
          <div class="w3-row-padding">
          <br>
@@ -103,7 +120,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <h3>followers</h3>
         <hr>
         <div style='margin-top: 44px;' ng-repeat='t in followers'>
-            <p ><img style='height:50px;width:50px;' ><span>{{t}}<span></p>
+            <p ><img  style='height:50px;width:50px;border-radius:100px' ><span>{{t}}</span></p>
                 <hr>
         </div>
     </div>
@@ -122,7 +139,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     margin-top: 7px;
     width: 80%;border-radius: 10px;'>
           <div style='margin-top: 44px; width:50%;margin-left:auto;margin-right:auto' ng-repeat='x in allUsers | filter:keySearch'>
-            <p ng-if='x.username!=username'><img style='height:50px;width:50px;' src='{{x.profileImage}}'><span>{{x.username}}<span><button ng-click='follow(x.username)'>follow</button></p>
+              <p ng-if='x.username!=username'><img style='height:50px;width:50px;border-radius:100px' src='{{x.profileImage}}'><span>{{x.username}}</span><button ng-click='follow(x.username)'>follow</button></p>
                 <hr>
         </div>
     </div>
@@ -164,10 +181,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <!--          </div>-->
         </div>
       </div>
-        
-        
-        
- 
 
     <div ng-repeat = 'post in posts.data | orderBy:"-likes"'>
         
@@ -179,14 +192,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         
   <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
 
-      <img id='postProfileImage' ng-src="{{post.profileImage}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
+      <img id='postProfileImage' ng-src="{{post.profileImage}}" alt="profile image" class="w3-left w3-margin-right" style="width:60px">
       <h4 ng-click='get(post.username)' id='postUsername' style='float:left'><b>{{post.username}}</b></h4><br>
       <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       
       <img id='postImg' ng-src='{{post.image}}' />
       <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes,post.username)' data-toggle="tooltip"  title='{{post.likers.toString()}}'>{{post.likes}}</span>
     <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes,post.username)' data-toggle="tooltip"  title='{{post.disLikers.toString()}}'>{{post.disLikes}}</span>
-      <span ng-show="post.username == username" ng id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
+      <span ng-show="post.username == username"  id='edit' class='glyphicon glyphicon-pencil postIcons' ng-click='isEditible=true' ng-show='!isEditible'></span>
       <span id='comment' class='glyphicon glyphicon-comment postIcons' ng-click='showComments=!showComments;getComments(post._id)'></span>
       <span ng-show="post.username == username"  id='applyEdits' ng-if='isEditible' ng-click='edit(post._id,$index,post.likes,post.disLikes)' class='glyphicon glyphicon-ok postIcons'></span>
   </div>
@@ -207,26 +220,18 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
         
                 <!-- weather widget start -->
-           <div>
+           <div class="widget">
         <!-- weather widget start --><a target="_blank" href="http://www.booked.net/weather/beirut-977"><img style='width: 98.5%;' src="https://w.bookcdn.com/weather/picture/32_977_1_1_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=37372"  alt="booked.net"/></a><!-- weather widget end -->
     </div>
       <br>
-      <br>
       
       <div class="w3-card-2 w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Friend Request</p>
-          <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-          <span>Jane Doe</span>
-          <div class="w3-row w3-opacity">
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-            </div>
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-            </div>
-          </div>
-        </div>
+        <div style='height: auto;
+    padding: 3px;
+'>
+        <a class="ref" href="http://localhost:8071/#/signin" target="_blank"><img 
+     src="logo.png" width="200px" height="100px"></a>
+   </div>
       </div>
       <br>
       
@@ -251,12 +256,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
+  <h5>Hope to Enjoy Our Society</h5>
 </footer>
 
-<footer class="w3-container w3-theme-d5">
 
-</footer>
  
 <script>
     

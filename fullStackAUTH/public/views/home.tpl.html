@@ -38,7 +38,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   
 <div class="w3-dropdown-hover w3-right w3-padding-large">
     
-<img ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
+<img  ng-src="{{i}}" class="w3-circle" style="height:25px;width:25px" alt="profile image">
   <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
     <a href="#settings" class="w3-bar-item w3-button">settings</a>
     <a href="#" class="w3-bar-item w3-button" ng-click='signout()'>logout</a>
@@ -74,15 +74,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card-2 w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">{{username}}</h4>
-         <p class="w3-center"><img ng-src='{{i}}'  style="height:50%;width:100%" alt="Avatar">
+         <h4 class="w3-center userName">{{username}}</h4>
+         <p class="w3-center"><img id="userImage" ng-src='{{i}}' alt="profile image">
              
          </p>
 
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {{job}}</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{POB}} </p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{DOB}}</p>
+         <center>
+         <p class="userData" ><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {{job}}</p>
+         <p class="userData"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{POB}} </p>
+         <p class="userData"><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{DOB}}</p>
+         </center>
         </div>
       </div>
       <br>
@@ -94,7 +96,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
           
  
-          <a href='#images' class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</a>
+              <a href='#images' class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-file-image-o fa-fw w3-margin-right"></i> Photos</a>
           <div id="Demo3" class="w3-hide w3-container">
          <div class="w3-row-padding">
          <br>
@@ -119,7 +121,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <h3>followers</h3>
         <hr>
         <div style='margin-top: 44px;' ng-repeat='t in followers'>
-            <p ><img style='height:50px;width:50px;' ><span>{{t}}<span></p>
+            <p ><img  style='height:50px;width:50px;border-radius:100px' ><span>{{t}}</span></p>
                 <hr>
         </div>
     </div>
@@ -138,7 +140,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     margin-top: 7px;
     width: 80%;border-radius: 10px;'>
           <div style='margin-top: 44px; width:50%;margin-left:auto;margin-right:auto' ng-repeat='x in allUsers | filter:keySearch'>
-            <p ng-if='x.username!=username'><img style='height:50px;width:50px;' src='{{x.profileImage}}'><span>{{x.username}}<span><button ng-click='follow(x.username)'>follow</button></p>
+              <p ng-if='x.username!=username'><img style='height:50px;width:50px;border-radius:100px' src='{{x.profileImage}}'><span>{{x.username}}</span><button ng-click='follow(x.username)'>follow</button></p>
                 <hr>
         </div>
     </div>
@@ -201,7 +203,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
         
   <div class="card-block" ng-init='isEditible=false; showCommentField=false'>
-      <img id='postProfileImage' ng-src="{{i}}" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
+      <img id='postProfileImage' ng-src="{{i}}" alt="profile image" class="w3-left w3-margin-right" style="width:60px">
       <h4 id='postUsername' style='float:left'><b>{{post.username}}</b></h4><br>
       <p contentEditable={{isEditible}} autofocus="autofocus" class="card-text" id='{{$index}}'>{{post.post}}</p>
       
@@ -244,25 +246,19 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         
         
                 <!-- weather widget start -->
-    <div>
-        <!-- weather widget start --><a target="_blank" href="http://www.booked.net/weather/beirut-977"><img style='width: 98.5%;' src="https://w.bookcdn.com/weather/picture/32_977_1_1_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=37372"  alt="booked.net"/></a><!-- weather widget end -->
+    <div  class="widget">
+        <!-- weather widget start --><a  target="_blank" href="http://www.booked.net/weather/beirut-977"><img style='width: 98.5%;' src="https://w.bookcdn.com/weather/picture/32_977_1_1_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=37372"  alt="booked.net"/></a><!-- weather widget end -->
     </div>
       <br>
-      
       <div class="w3-card-2 w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Friend Request</p>
-          <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-          <span>Jane Doe</span>
-          <div class="w3-row w3-opacity">
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-            </div>
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-            </div>
-          </div>
-        </div>
+       <div class="w3-card-2 w3-round w3-white w3-center">
+        <div style='height: auto;
+    padding: 3px;
+'>
+        <a class="ref" href="http://localhost:8071/#/signin" target="_blank"><img 
+     src="logo.png" width="200px" height="100px"></a>
+   </div>
+      </div>
       </div>
       <br>
       
@@ -287,12 +283,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
+  <h5 style="color:white">Hope to Enjoy Our Society</h5>
 </footer>
 
-<footer class="w3-container w3-theme-d5">
 
-</footer>
  
 <script>
 // Accordion
