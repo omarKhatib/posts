@@ -284,6 +284,8 @@ $scope.loadConnection = function() {
      
      $scope.follow = function(user){
          authService.addFollower($scope.username,{follower:user}).then(function(response){
+             $scope.getFollowing();
+             
              
          }, function(error){
              console.log(error);
