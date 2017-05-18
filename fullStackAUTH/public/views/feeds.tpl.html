@@ -211,7 +211,37 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <hr>
         <input id='commentTextField' ng-model='comment'  placeholder='comment' type='text' class='form-control'>
             <button ng-click='addComment(post._id, comment,post.username, post.post)' class='commentbtn'>add</button>
-            <p ng-repeat='c in comments track by $index'><span>{{c}}</span></p>
+            <div ng-repeat='c in comments track by $index'>
+                
+                
+                 <div class="card-block comment-card" >
+
+      <img  ng-src="{{c.profileImage}}" alt="profile image" class="w3-left w3-margin-right" style=" width: 12%;;border-radius:15px;">
+      <b  id='postUsername' style='float:left;margin-top: 6px;font-size: 22px;' >{{c.username}}</b>
+      <p style='display:inline;font-size: 28px;color:#676565;'  autofocus="autofocus"  id='{{$index}}'>{{c.comment}}</p>
+      
+     <div>
+
+                     
+                     </div>        
+                     
+                </div>
+                
+                
+                
+                
+                
+                
+<!--
+                <img ng-src='{{c.profileImage}}'>
+                <span style='font-size: 30px;'>{{c.username}}</span>:<span font-size: 25px;>{{c.comment}}</span>
+                <div>
+                    <span id='like' class="glyphicon glyphicon-thumbs-up postIcons" ng-click='like(post._id,post.post,post.likes,post.disLikes)' data-toggle="tooltip"  title='{{post.likers.toString()}}'>{{post.likes}}</span>
+    <span id='dislike' class="glyphicon glyphicon-thumbs-down postIcons" ng-click='disLike(post._id,post.post,post.likes,post.disLikes)' data-toggle="tooltip"  title='{{post.disLikers.toString()}}'>{{post.disLikes}}</span>
+                    </div>
+-->
+            <hr>
+            </div>
             
         </div>
 </div>

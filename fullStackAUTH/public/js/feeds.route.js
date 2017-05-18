@@ -258,7 +258,7 @@ $scope.loadConnection = function() {
      
      
      $scope.addComment= function(id, comment,to,post){
-         var data = {comment:comment};
+         var data = {username:$scope.username,profileImage:$scope.i,comment:comment}
          $scope.comment = '';
          
          Service.addComment(id,data).then(function(){
@@ -274,6 +274,8 @@ $scope.loadConnection = function() {
          
          
      }
+     
+
      
      
      

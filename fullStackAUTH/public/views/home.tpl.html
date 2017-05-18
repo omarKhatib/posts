@@ -222,11 +222,24 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <hr>
         <input id='commentTextField' ng-model='comment'  placeholder='comment' type='text' class='form-control'>
             <button ng-click='addComment(post._id, comment)' class='commentbtn'>add</button>
-            <p ng-repeat='c in comments track by $index'>
-                <span>{{c}}</span>
+                     <div ng-repeat='c in comments track by $index'>
+                
+                
+                 <div class="card-block comment-card" >
 
-            
-            </p>
+      <img  ng-src="{{c.profileImage}}" alt="profile image" class="w3-left w3-margin-right " style=" width: 12%;border-radius:15px;">
+      <b  id='postUsername' style='float:left;margin-top: 6px;font-size: 22px;' >{{c.username}}</b>
+      <p style='display:inline;font-size: 28px;color:#676565;'  autofocus="autofocus"  id='{{$index}}'>{{c.comment}}</p>
+      
+     <div>
+
+                     
+                     </div>        
+                     
+                </div>
+
+            <hr>
+            </div>
             
         </div>
 </div>

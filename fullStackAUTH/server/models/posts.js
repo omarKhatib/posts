@@ -9,7 +9,7 @@ var postsSchema = new schema({
     likes:Number,
     disLikes:Number,
     tags:[String],
-    comments:[String],
+    comments:[],
     likers:[String],
     disLikers:[String],
     username:String,

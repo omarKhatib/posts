@@ -130,7 +130,7 @@ apiRouter.post("/", function (req, res) {
 
 
 apiRouter.post("/:id", function (req, res) { 
-    var comment = req.body.comment;
+    var comment = req.body;
     data.findOne({
         _id: req.params.id
     }, function (err, d) {
