@@ -50,6 +50,11 @@ app.controller("settingsCtrl", function($scope, Service, privService, tokenServi
                   });
         }
         
+        
+            $scope.Home = function(){
+         $location.path("/feeds")
+     }
+        
     
     
 
