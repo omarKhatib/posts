@@ -148,6 +148,95 @@ console.log(response);
         
     }
   
+  
+  
+  
+                      $scope.getUsers = function(){
+              authService.getUsers().then(function(response){
+                  $scope.allUsers = response.data.data;
+                  
+              },function(error){
+                  console.log('error')
+              })
+          }
+               
+
+          
+        
+
+     
+     $scope.follow = function(user){
+         authService.addFollower($scope.username,{follower:user}).then(function(response){
+             Service.emitNotification($scope.socket,privService.getUser(),user,'follow');
+            notificationsService.postNotification({from:privService.getUser(),to:user,action:'follow'});
+             
+             
+             
+             
+             
+             $scope.getFollowing();
+         }, function(error){
+             console.log(error);
+         })
+     
+     }
+   
+     
+               $scope.unfollow = function(user){
+  console.log(user);
+         authService.unfollow($scope.username,{follower:user}).then(function(response){
+             
+  
+             Service.emitNotification($scope.socket,privService.getUser(),user,'unfollow');
+            notificationsService.postNotification({from:privService.getUser(),to:user,action:'unfollow'});
+             
+             
+             $scope.getFollowing();
+             
+             
+         }, function(error){
+             console.log(error);
+         })
+     
+     }
+     
+     
+     
+           $scope.getFollowing  =function(){      
+            
+            authService.getProfileImage($scope.username).then(function(response){
+
+
+             $scope.following = response.data.data.following;
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+
+        }
+     
+           $scope.getFollower  =function(){      
+            
+            authService.getProfileImage($scope.username).then(function(response){
+
+
+                 $scope.followers = response.data.data.followers;
+
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+
+        }
+  
+  
+  
+  
+  
       
 
     
