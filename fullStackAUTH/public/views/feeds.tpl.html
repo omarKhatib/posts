@@ -23,8 +23,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{oldNotificationsNum+notificationNum}}</span></button>     
     <div  class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in notifications'>{{notification.from}} {{notification.action}}s your post : {{notification.post}} <hr></span>
-        <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in oldNotifications'>{{notification.from}} {{notification.action}}s your post : {{notification.post}} <hr></span>
+        <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in notifications'>{{notification.from}} {{notification.action}}s your <span ng-if='notification.action!="follow" && notification.action!="unfollow"'>post : {{notification.post}}</span> <hr></span>
+        
+        
+        <span ng-click='removeNotification(notification._id)' class="w3-bar-item w3-button" ng-repeat='notification in oldNotifications'>{{notification.from}} {{notification.action}}s your <span ng-if='notification.action!="follow" && notification.action!="unfollow"'>post : {{notification.post}}</span> <hr></span>
         
         
 
@@ -117,7 +119,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
   <div class="tab-content" >
     <div ng-init='getFollowers()'  id="followers" class="tab-pane fade in active">
-      <h3>followers</h3>
+      <h3>followers ({{followers.length}})</h3>
         <hr>
            <h3 ng-if='followers.length==0' style='color:#c1c5c5'>you dont have any follower yet</h3>
         <div style='margin-top: 44px;' ng-repeat='t in followers'>
@@ -126,11 +128,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         </div>
     </div>
     <div ng-init='getFollowing()'  id="following" class="tab-pane fade">
-      <h3>following</h3>
+      <h3>following ({{following.length}})</h3>
         <hr>
            <h3 ng-if='following.length==0' style='color:#c1c5c5'>you did'nt follow any one yet</h3>
          <div  ng-repeat='f in following'>
-             {{f}}
+             {{f}} <button ng-click='unfollow(f)' class='btn btn-danger' style='margin-right:10px'>unfollow</button>
                 <hr>
         </div>
     </div>

@@ -33,5 +33,10 @@ app.service("authService", function ($http) {
      this.addFollower = function (username, data) {
         return $http.post("http://localhost:8070/auth/addfollower/" + username+'/', data);
     }
+     
+    this.unfollow = function (username, data) {
+        console.log(data);
+        return $http.post("http://localhost:8070/auth/unfollow/" + username+'/', data);
+    }
     
 });

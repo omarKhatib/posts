@@ -297,6 +297,28 @@ $scope.loadConnection = function() {
      
      }
      
+     
+          $scope.unfollow = function(user){
+  console.log(user);
+         authService.unfollow($scope.username,{follower:user}).then(function(response){
+             
+  
+             Service.emitNotification($scope.socket,privService.getUser(),user,'unfollow');
+            notificationsService.postNotification({from:privService.getUser(),to:user,action:'unfollow'});
+             
+             
+             $scope.getFollowing();
+             
+             
+         }, function(error){
+             console.log(error);
+         })
+     
+     }
+     
+     
+     
+     
            $scope.getFollowing  =function(){      
             
             authService.getProfileImage($scope.username).then(function(response){

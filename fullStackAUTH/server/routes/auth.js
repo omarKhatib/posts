@@ -295,15 +295,86 @@ authRouter.post("/addfollower/:username", function (req, res) {   //add follower
                     
                     
                     
+                }
+
+            });
+
+
+        }
+
+
+    })
+    
+
+});
+
+
+
+
+
+
+
+authRouter.post("/unfollow/:username", function (req, res) {
+  console.log(req.body);
+    User.findOne({
+        username: req.params.username
+    }, function (err, d) {
+        if (err) {
+           
+            res.status(500).send({
+                message: 'error'
+            });
+
+        } else {
+            var i = d.following.indexOf(req.body.follower)
+            d.following.splice(i,1);
+            d.save(function (err, data) {
+                if (err) {
+                     
+                    res.status(500).send({
+                        message: 'error'
+                    });
+
+
+                } else {
+
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                            User.findOne({
+        username: req.body.follower
+    }, function (err, d) {
+        if (err) {
+           
+            res.status(500).send({
+                message: 'error'
+            });
+
+        } else {
+            
+            var ii = d.followers.indexOf(req.params.username)
+            d.followers.splice(ii,1);
+            
+            d.save(function (err, data) {
+                if (err) {
+                     
+                    res.status(500).send({
+                        message: 'error'
+                    });
+
+
+                } else {
+     
+                    res.status(200).send({
+                        'data': data
+                    });
+                }
+
+            });
+
+
+        }
+
+
+    })
                     
                     
                     
@@ -320,6 +391,22 @@ authRouter.post("/addfollower/:username", function (req, res) {   //add follower
     
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
