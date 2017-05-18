@@ -1,5 +1,5 @@
     <link rel="stylesheet" href="/css/messengerStyle.css">
-    
+    <div class="emptyrow"></div>
     <div class="wrapper" ng-init='getUsers();loadConnection()'>
         <div class="container">
             <div class="left">
@@ -12,11 +12,11 @@
 
 
                     <li ng-if="user.username!=username" ng-click='getselectedUser(user.username)' class="person" data-chat="person6">
-                        <img ng-src="{{user.profileImage}}" alt="" />
+                        <img style="margin-top: -10px !important" ng-src="{{user.profileImage}}" alt="" />
                         <span class="name">{{user.username}}</span>
-
-                        <span class="preview">how do you do a space</span>
+                        
                     </li>
+                    <br>
                 </ul>
             </div>
             <div class="right">
@@ -24,7 +24,6 @@
                 </div>
                 <div ng-click='getchatUser(user.message)'class="chat">
                     <div class="conversation-start">
-                        <span>Today, 6:48 AM</span>
                     </div>
                      <div class="bubble you" >
                     
@@ -44,7 +43,6 @@
                 </div>
                 <div class="chat" data-chat="person2" id='t' >
                     <div class="conversation-start">
-                        <span>Today, 5:38 PM</span>
                     </div>
                     
                        <div ng-repeat='message in oldMessages'>
