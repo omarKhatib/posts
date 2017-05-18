@@ -225,6 +225,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 -->
 
         <div class='row' style='display:inline-block;margin-left:20%;margin-right:20%;width:60%'>
+            <h1 ng-if='images.length==0' style='color:#c4cad0'>No private images yet</h1>
             <div ng-repeat='img in images' class='col-md-12' style='margin:5% auto;'>
                 <span id='remove' class='glyphicon glyphicon-remove' ng-click='removeImage(img)'></span>
                 <img src='{{img}}' style='width: 90%;heigh:auto'>
