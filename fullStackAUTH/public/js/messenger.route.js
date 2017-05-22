@@ -1,4 +1,4 @@
-var app = angular.module("app.messenger", ["ngRoute", "authModule", "tokenModule","privModule","chattingModule"]);
+var app = angular.module("app.messenger", ["ngRoute","authModule", "tokenModule","privModule","chattingModule","notificationsModule"]);
 
 app.config(function($routeProvider) {
   $routeProvider.when("/messenger", {
@@ -7,7 +7,7 @@ app.config(function($routeProvider) {
   });
 });
 
-app.controller("messengerCtrl", function($scope, authService, $location, tokenService, privService, chattingService) {
+app.controller("messengerCtrl", function($scope,Service, authService, $location, tokenService, privService, chattingService,notificationsService) {
     
     //chatting jquery
     $('.chat[data-chat=person2]').addClass('active-chat');
@@ -29,7 +29,75 @@ $('.left .person').mousedown(function(){
       $scope.socket = {};
     $scope.messages = [];
     $scope.username = privService.getUser();
-          $scope.loadConnection = function() {
+    
+    $scope.notifications =[];
+    
+    $scope.loadConnectionNT = function() {
+    
+  
+    $scope.socket = Service.connect();
+    Service.getNotification($scope.socket, function(data) {
+          
+        if(data.to == $scope.username && data.from!=$scope.username){
+   
+            
+            $scope.notifications.push(data);
+            
+            $scope.notificationNum = $scope.notifications.length;
+            
+            console.log($scope.notifications);
+            console.log($scope.notificationNum);
+            $scope.$apply();
+
+        }
+    });
+  };
+    
+    
+    
+    $scope.getOldNotifications = function(){
+        notificationsService.getNotifications($scope.username).then(function(response){
+            $scope.oldNotifications = response.data.data;
+            console.log($scope.oldNotifications)
+            $scope.oldNotificationsNum = $scope.oldNotifications.length;
+        },function(err){
+            console.log('error')
+        })
+            
+            
+        }
+
+          $scope.removeNotification = function(id){
+        notificationsService.removeNotification(id).then(function(response){
+            $scope.oldNotifications = response.data.data;
+            $scope.oldNotificationsNum = $scope.oldNotificationsNum-1;
+            $scope.getOldNotifications();
+        },function(err){
+            console.log('error')
+        })
+            
+            
+        } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+          $scope.loadConnectionCH = function() {
     $scope.socket = chattingService.connect();
     chattingService.getChat($scope.socket, function(data) {
         console.log('new data');
@@ -53,6 +121,32 @@ $('.left .person').mousedown(function(){
         })
         
     }
+    
+    
+    
+    $scope.getProfileImage  =function(){       //get profile image , dop ,pob and job
+            
+            authService.getProfileImage($scope.username).then(function(response){
+
+                $scope.i = response.data.data.profileImage;
+                $scope.job = response.data.data.job;
+                $scope.POB = response.data.data.placeOfbirth;
+                 $scope.followers = response.data.data.followers;
+             $scope.following = response.data.data.following;
+                var temp = new Date(response.data.data.dateOfbirth);
+                $scope.DOB = temp.toLocaleDateString();
+                
+                
+            }, function(response){
+                console.log('error in getting user data')
+                
+            })
+            
+            
+            
+            
+            
+        }
 
     
     

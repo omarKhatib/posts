@@ -201,7 +201,7 @@ height: auto;
     max-height:600px;
     overflow-y: scroll;
     display: block;
-    
+    height: 600px;
 
    
 }
@@ -422,6 +422,6 @@ ul {
  
 
 .emptyrow{
-    margin-top: 100px;
+    margin-top: 80px;
     margin-right:  120px !important;
 }
