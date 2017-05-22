@@ -18,4 +18,12 @@ app.controller("signinCtrl", function($scope, authService, $location, tokenServi
       console.log(response.status);
     });
   }
+        $scope.userInput = {};
+  $scope.signup = function() {
+    authService.postSignup($scope.userInput).then(function(response) {
+      alert("You have signed up for an account , please signin");
+    }, function(response) {
+      console.log(response.status);
+    });
+  }
 });
