@@ -45,7 +45,10 @@ app.controller("settingsCtrl", function($scope, Service, privService, tokenServi
                 
                 
             }, function(error){
-                      console.log('error'+error)
+                      console.log(error.status);
+                      if(error.status==409){
+                          $('#settingsUsername').css('border','red solid 1px');
+                      }
                       
                   });
         }

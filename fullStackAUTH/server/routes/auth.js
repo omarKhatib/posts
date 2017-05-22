@@ -126,10 +126,17 @@ authRouter.put("/:username", function (req, res) {  //update personal info
 
 
 
-            data.save();
-            res.status(200).send({
+            data.save(function(err , data){
+                if(err){
+                    res.status(409).send({error:"confict:token username!"});
+                }
+                else{
+                     res.status(200).send({
                 updatedData: data
             })
+                }
+            });
+           
 
 
         }
