@@ -5,7 +5,7 @@
    <div class="col-md-5 col-md-offset-1">
     <h2 class="WebName"> Friends </h2>
    </div>
-    <div class="col-md-2 inputsSignin">
+    <div class="col-md-2 inputsSignin" >
         <input ng-model="userinput.username" placeholder="username..." class="form-control">
     </div>
       <div class="col-md-2 inputsSignin">
@@ -37,7 +37,7 @@
                 <input ng-model="userInput.password" name="password" type="password" id="password" class="form-control"  required>
                 <br>
                 <label>Confirm Password</label>
-                  <input ng-model="Confirmpassword" name="password" type="password" id="password" class="form-control"  required>
+                  <input ng-model="confirmPassword" name="password" type="password" id="password" class="form-control"  required>
             </div>
             <div class="col-md-6">
                 <label > Place Of Birth </label>
@@ -69,7 +69,7 @@
         
     </div>
     <div class="col-md-5 ">
-        <button style="float:left" ng-click="signup()" class="btn btn-primary">Create an Account</button>
+        <button  ng-disabled='userInput.password!=confirmPassword' style="float:left" ng-click="signup()" class="btn btn-primary">Create an Account</button>
     </div>
 </div>
 </div>
