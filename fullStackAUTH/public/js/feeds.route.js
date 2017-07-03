@@ -19,13 +19,13 @@ app.controller("feedsCtrl", function($scope, Service, privService, tokenService,
     
 
     
-           $(document).ready(function(){
+    $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
     
-    $scope.notifications =[];
+     $scope.notifications =[];
     
-$scope.loadConnection = function() {
+     $scope.loadConnection = function() {
     
   
     $scope.socket = Service.connect();
@@ -45,10 +45,8 @@ $scope.loadConnection = function() {
         }
     });
   };
-    
-    
-    
-    $scope.getOldNotifications = function(){
+
+     $scope.getOldNotifications = function(){
         notificationsService.getNotifications($scope.username).then(function(response){
             $scope.oldNotifications = response.data.data;
             console.log($scope.oldNotifications)
@@ -60,7 +58,7 @@ $scope.loadConnection = function() {
             
         }
 
-          $scope.removeNotification = function(id){
+     $scope.removeNotification = function(id){
         notificationsService.removeNotification(id).then(function(response){
             $scope.oldNotifications = response.data.data;
             $scope.oldNotificationsNum = $scope.oldNotificationsNum-1;
@@ -71,17 +69,11 @@ $scope.loadConnection = function() {
             
             
         }       
-               
-        
 
-  
-  
-    $scope.getAllUsersPosts = function(){
-        console.log('getting data');
+     $scope.getAllUsersPosts = function(){
         Service.getAllUsersPosts().then(function(response){
             $scope.posts = response.data;
-            console.log("Here in code")
-            console.log($scope.posts.data);
+
             $scope.posts.data.map(function(item){
      
                 $scope.getProfilesImages(item);
@@ -92,9 +84,8 @@ $scope.loadConnection = function() {
         })
           
     }
-    
-    
-        $scope.get = function(uu){
+
+     $scope.get = function(uu){
         console.log('getting data');
         Service.getUserPosts(uu).then(function(response){
             $scope.posts = response.data;
@@ -104,9 +95,8 @@ $scope.loadConnection = function() {
             
         })
     }
-    
-    
-    $scope.addPost = function(){
+
+     $scope.addPost = function(){
         var postArr = $scope.post.split(" ");
         //var tags = [];
         for(var i=0 ; i<postArr.length ; i++){
@@ -138,9 +128,9 @@ $scope.loadConnection = function() {
         
     }
     
-    $scope.username = privService.getUser(); 
+     $scope.username = privService.getUser(); 
     
-      $scope.getProfileImage  =function(){       //get profile image , dop ,pob and job
+     $scope.getProfileImage  =function(){       //get profile image , dop ,pob and job
 
             authService.getProfileImage($scope.username).then(function(response){
                 console.log(response.data.data);
@@ -162,9 +152,8 @@ $scope.loadConnection = function() {
             
             
         }
-    
-    
-          $scope.getProfilesImages = function(user){
+
+     $scope.getProfilesImages = function(user){
 
             authService.getProfileImage(user.username).then(function(response){
 
@@ -176,11 +165,8 @@ $scope.loadConnection = function() {
             
             
         }
-    
-    
 
-
-    $scope.edit = function(id,i,likes,dislikes){
+     $scope.edit = function(id,i,likes,dislikes){
      var post = $("#"+i).text();
         
         var data = {post:post ,likes:likes, disLikes:dislikes};
@@ -192,9 +178,8 @@ $scope.loadConnection = function() {
         });
         
     }
-    
 
-  $scope.remove = function(id){
+     $scope.remove = function(id){
         Service.deleteData(id).then(function(response){
 
             $scope.getAllUsersPosts();
@@ -203,18 +188,23 @@ $scope.loadConnection = function() {
         });
         
     }
-  
-      
-    $scope.like = function(id,post,likes,disLikes,to){
+
+     $scope.like = function(id,post,likes,disLikes,to){
         var data = {post:post, likes:likes+1, disLikes:disLikes};
         Service.addLiker(id,{liker:$scope.username}).then(function(response){
             
-            Service.likeDisLike(id,data);
-            notificationsService.postNotification({from:privService.getUser(),to:to,action:'like',post:post});
+            Service.likeDisLike(id,data).then(function(response){
+                $scope.getAllUsersPosts();
+                notificationsService.postNotification({from:privService.getUser(),to:to,action:'like',post:post});
                 
                 Service.emitNotification($scope.socket,privService.getUser(),to,'like',post);
+                
+            })
+//            notificationsService.postNotification({from:privService.getUser(),to:to,action:'like',post:post});
+//                
+//                Service.emitNotification($scope.socket,privService.getUser(),to,'like',post);
             
-            $scope.getAllUsersPosts();
+            //$scope.getAllUsersPosts();
                 
     
             
@@ -233,18 +223,21 @@ $scope.loadConnection = function() {
         var data = {post:post, likes:likes, disLikes:disLikes+1};
         Service.addDisLiker(id,{"disLiker":$scope.username}).then(function(response){
            
-            Service.likeDisLike(id,data);
-            Service.emitNotification($scope.socket,privService.getUser(),to,'disLike',post);
+            Service.likeDisLike(id,data).then(function(response){
+               $scope.getAllUsersPosts(); 
+                Service.emitNotification($scope.socket,privService.getUser(),to,'disLike',post);
             notificationsService.postNotification({from:privService.getUser(),to:to,action:'disLike',post:post});
-            $scope.getAllUsersPosts();
+                
+            })
+            
+            
             
             
             
         })
         
     }
-     
-     
+
      $scope.getComments = function(id){
          
          Service.getComments(id).then(function(response){
@@ -255,8 +248,7 @@ $scope.loadConnection = function() {
          
          
      }
-     
-     
+
      $scope.addComment= function(id, comment,to,post){
          var data = {username:$scope.username,profileImage:$scope.i,comment:comment}
          $scope.comment = '';
@@ -274,16 +266,8 @@ $scope.loadConnection = function() {
          
          
      }
-     
 
-     
-     
-     
-     
-     
-     
-     
-                    $scope.getUsers = function(){
+     $scope.getUsers = function(){
               authService.getUsers().then(function(response){
                   $scope.allUsers = response.data.data;
                   
@@ -291,12 +275,7 @@ $scope.loadConnection = function() {
                   console.log('error')
               })
           }
-               
-
-          
-        
-
-     
+                   
      $scope.follow = function(user){
          authService.addFollower($scope.username,{follower:user}).then(function(response){
              Service.emitNotification($scope.socket,privService.getUser(),user,'follow');
@@ -312,9 +291,8 @@ $scope.loadConnection = function() {
          })
      
      }
-   
-     
-               $scope.unfollow = function(user){
+
+     $scope.unfollow = function(user){
   console.log(user);
          authService.unfollow($scope.username,{follower:user}).then(function(response){
              
@@ -331,10 +309,8 @@ $scope.loadConnection = function() {
          })
      
      }
-     
-     
-     
-           $scope.getFollowing  =function(){      
+   
+     $scope.getFollowing  =function(){      
             
             authService.getProfileImage($scope.username).then(function(response){
 
@@ -349,7 +325,7 @@ $scope.loadConnection = function() {
 
         }
      
-           $scope.getFollower  =function(){      
+     $scope.getFollower  =function(){      
             
             authService.getProfileImage($scope.username).then(function(response){
 
@@ -364,13 +340,8 @@ $scope.loadConnection = function() {
             
 
         }
-     
-     
-     
-     
-
-     
-       $scope.signout = function() {
+    
+     $scope.signout = function() {
            
      tokenService.removeToken();
       privService.removeUser();
