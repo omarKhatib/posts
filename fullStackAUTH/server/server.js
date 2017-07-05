@@ -42,7 +42,8 @@ var chattingRouter = require("./routes/chatting.js");
 var notificationsRouter = require("./routes/notifications.js");
 
 
-app.use("/posts", expressJwt({"secret": config.secret}));
+//app.use("/posts", expressJwt({"secret": config.secret}));
+app.use("/notifications", expressJwt({"secret": config.secret}));
 
 app.use("/auth", authRouter);
 app.use("/posts", apiRouter);
