@@ -49,13 +49,6 @@ chattingRouter.get("/:sender/:reciever", function(req, res) {
 });
 
 
-
-
-
-
-
-
-
 chattingRouter.post("/", function (req, res) {
     var newData = new data(req.body);
     newData.save(function (err, nd) {
