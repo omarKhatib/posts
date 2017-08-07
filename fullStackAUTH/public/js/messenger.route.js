@@ -192,9 +192,9 @@ $('.left .person').mousedown(function(){
         console.log(message);
         chattingService.postMessage(message).then(function(response){ chattingService.emitChat($scope.socket,message.sender,message.reciever,message.message);
                                                                      
-notificationsService.postNotification({from:message.sender,to:message.reciever,action:'message',post:post});
+notificationsService.postNotification({from:message.sender,to:message.reciever,action:'message',post:message.message});
                 
- Service.emitNotification($scope.socket,message.sender,message.reciever,'message',post);                                                                 
+ Service.emitNotification($scope.socket,message.sender,message.reciever,'message',message.message);                                                                 
                                                                      
                                                                      
                                                                      
