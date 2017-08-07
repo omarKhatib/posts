@@ -191,6 +191,13 @@ $('.left .person').mousedown(function(){
         message.message = $scope.message;
         console.log(message);
         chattingService.postMessage(message).then(function(response){ chattingService.emitChat($scope.socket,message.sender,message.reciever,message.message);
+                                                                     
+notificationsService.postNotification({from:message.sender,to:message.reciever,action:'message',post:post});
+                
+ Service.emitNotification($scope.socket,message.sender,message.reciever,'message',post);                                                                 
+                                                                     
+                                                                     
+                                                                     
  var element = document.getElementById("t");
     element.scrollTop = element.scrollHeight; //make scroll on bottom after sending new message 
                      $scope.message = "";
