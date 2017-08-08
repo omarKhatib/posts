@@ -68,6 +68,13 @@ io.emit("notification", {"from":data.from , "to":data.to , "action":data.action 
     
     
     
+    socket.on("isTyping", function(data) {
+    console.log(data);
+io.emit("isTyping", {"from":data.from , "to":data.to, "action":data.action});
+  })
+    
+    
+    
     
 });
 

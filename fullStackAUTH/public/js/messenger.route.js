@@ -36,6 +36,40 @@ $('.left .person').mousedown(function(){
     
   
     $scope.socket = Service.connect();
+        
+        
+        chattingService.ifIsTyping($scope.socket, function(data){
+            $scope.isTypingNow;
+            
+            if(data.to == $scope.username && data.from!=$scope.username && data.from==$scope.selectedUser){
+                console.log(data);
+                if (data.action == "typing"){
+                    $scope.isTypingNow = "typing...";
+                    
+                }
+                
+                else if (data.action == "notTyping"){
+                    $scope.isTypingNow = " ";
+                    
+                }
+                $scope.$apply();
+                
+            }
+            
+            
+            
+            
+        })
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     Service.getNotification($scope.socket, function(data) {
           
         if(data.to == $scope.username && data.from!=$scope.username){
@@ -79,23 +113,7 @@ $('.left .person').mousedown(function(){
             
         } 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
           $scope.loadConnectionCH = function() {
     $scope.socket = chattingService.connect();
@@ -108,8 +126,7 @@ $('.left .person').mousedown(function(){
   };
 
     
-    
-    //chatting jquery
+   
 
     $scope.getUsers = function(){
         authService.getUsers().then(function(response){
@@ -148,11 +165,7 @@ $('.left .person').mousedown(function(){
             
         }
 
-    
-    
-    
-    
-    
+
     var message;
     $scope.getselectedUser=function(selectedusername){
         
@@ -205,6 +218,24 @@ notificationsService.postNotification({from:message.sender,to:message.reciever,a
             console.log($scope.messages);
             
         })
+        
+    }
+    
+    
+    $scope.typing = function(){
+        
+        
+        chattingService.isTyping($scope.socket,privService.getUser(), $scope.selectedUser, "typing");
+        
+        
+    }
+    
+    
+    $scope.notTyping = function(){
+        
+        
+        chattingService.isTyping($scope.socket,privService.getUser(), $scope.selectedUser, "notTyping");
+        
         
     }
 

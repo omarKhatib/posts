@@ -16,6 +16,8 @@ app.service("Service", function ($http) {
             , post: post
         });
     };
+    
+    
     this.getUserPosts = function (username) {
         return $http.get("http://localhost:8070/posts/" + username);
     }

@@ -13,6 +13,8 @@ app.service("chattingService", function($http) {
     });
   };
     
+    
+    
 
     
     this.getMessages = function(data){
@@ -32,5 +34,19 @@ app.service("chattingService", function($http) {
          console.log('sender');
     socket.emit("message", {sender:sender,reciever:reciever,message: message});
   };
+    
+    
+    this.isTyping = function(socket,from,to, action){
+        
+        socket.emit("isTyping", {from:from,to:to, action:action});
+        
+    }
+    
+    this.ifIsTyping = function(socket, onSuc) {
+    socket.on("isTyping", function(data) {
+      onSuc(data);
+    });
+  };
+    
 
 });

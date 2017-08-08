@@ -78,7 +78,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 </ul>
             </div>
             <div class="right">
-                <div class="top"><span>To: <span class="name">{{selectedUser}}</span></span>
+                <div class="top"><span>To: <span class="name">{{selectedUser}}</span><span >{{isTypingNow}}</span></span>
                 </div>
                 <div ng-click='getchatUser(user.message)'class="chat">
                     <div class="conversation-start">
@@ -126,7 +126,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
          
                 <div class="write">
                     
-                    <input type="text" placeholder="hit me a message" ng-model='message' >
+                    <input type="text" placeholder="hit me a message" ng-model='message' ng-keypress="typing()" ng-blur="notTyping()">
                     
                     <a href="javascript:;" ng-click='sendMessage()' class="write-link send"  ></a>
                     
